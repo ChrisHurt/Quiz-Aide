@@ -3,11 +3,9 @@
 <a href="/questions/new"><button>Add A New Question</button></a>
 
 <% @questions.each do |question|%>
-    <p>Question: <%= question.question%></p>
-    <p>Type: <%= question.question_type%></p>
+    <p>Question: <%= question.body%></p>
+    <p>Type: <%= question.assessment_type%></p>
     <p>Answer: <%= question.answer_key%></p>
     <a href="/questions/<%= question.id%>"><p>Edit Question</p></a>
     <br>
 <% end %>
-
-<a href="/teachers/home"><button>Return Home</button></a>

@@ -3,25 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>Latin Self-Assessment Tool</title>
+  <link rel='stylesheet' href='/stylesheets/reset.css'>
   <link rel='stylesheet' href='/stylesheets/main.css'>
 </head>
 <body>
   <%if session[:user_id]%>
-    
-    <% if session[:user_type] == 'Teacher'  %>
-      <p>Logged in as a <%= session[:user_type]%>: <%= Teacher.find(session[:user_id]).email %></p>
-    <% else %>
-      <p>Logged in as a <%= session[:user_type]%>: <%= Student.find(session[:user_id]).email %></p>
-    <% end %>
-    
-    <form action="/sessions" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <button>logout</button>
-    </form>
+    <nav>
+      <a href="/questions"><div>Questions</div></a>
+      <% if session[:user_type] == 'Teacher'  %>
+      <a href="/"><div>Classes</div></a>
+      <div class="user"><%= Teacher.find(session[:user_id]).email %>
+      <% else %>
+      <a href="/"><div>Answers</div></a>
+      <a href="/"><div>Metrics</div></a>
+      <div class="user"><%= Student.find(session[:user_id]).email %>
+      <% end %>
+        <form action="/sessions" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button>logout</button>
+        </form>
+      </div>
+    </nav>
   <% else %>
     <a href="/login"><button>login</button></a>
   <%end%>
   <%= yield %>
-
+  <nav class="bottom-bar">
+    <div>
+    </div>
+  </nav>
 </body>
 </html>

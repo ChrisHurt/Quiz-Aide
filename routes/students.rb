@@ -1,36 +1,52 @@
-# Student's home page
-get '/students/home' do
-    # @student - once you have a teacher database
-    erb :student_home
-  end
+
+# All Student Records
+get '/students' do 
+  @students = Student.all
+  erb :students
+end
+
+# New Student Record
+get '/students/new' do
+  erb :add_student
+end
+
+# Individual Student Record
+get '/students/:id' do
+  @student = Student.find(params[:id])
+  erb :student
+end
+    
+# Creating a New Student
+post '/students' do 
+
+  student = Student.new
+  student.first_name = params[:first_name]
+  student.middle_name = params[:middle_name]
+  student.last_name = params[:last_name]
+  student.class_id = params[:class_id]
+  student.email = params[:email]
+  student.password = params[:password]
+  student.save
   
-  # Student's question list
-  get '/students/questions' do
-    # @student - once you have a teacher database
-    # After authentication, consolidate the home page
-    @questions = Latin_Question.all
-    erb :student_questions
-  end
-  
-  post '/students/questions' do
-    student_answer =  Student_Answer.new
-    student_answer.studentid = session[:user_id]
-    student_answer.questionid = params[:question_id]
-    student_answer.answer = params[:answer]
-    student_answer.save
-    redirect '/students/questions'
-  end
-  
-  # Student's answer history
-  get '/students/answers' do
-    # @student - once you have a teacher database
-    # After authentication, consolidate the home page
-    erb :student_answers
-  end
-  
-  # Student's metrics
-  get '/students/metrics' do
-    # @student - once you have a teacher database
-    # After authentication, consolidate the home page
-    erb :student_metrics
-  end
+  redirect '/students'
+end
+    
+# Updating a Student Record
+put '/students/:id' do 
+  student = Student.find(params[:id])
+  student.first_name = params[:first_name]
+  student.middle_name = params[:middle_name]
+  student.last_name = params[:last_name]
+  student.class_id = params[:class_id]
+  student.email = params[:email]
+  student.password = params[:password]
+  student.save
+  redirect '/students'
+end
+    
+# Deleting a Student Record
+delete '/students/:id' do 
+  student = Student.find(params[:id])
+  student.delete
+  redirect '/students'
+end

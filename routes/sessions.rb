@@ -12,11 +12,7 @@ get '/login' do
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       session[:user_type] = user.class.to_s
-      if session[:user_type] == 'Student'
-        redirect '/students/home'
-      else
-        redirect '/teachers/home'
-      end
+      redirect '/home'
     else
       erb :login
     end  
