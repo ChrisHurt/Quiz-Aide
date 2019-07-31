@@ -1,0 +1,29 @@
+<h1>Question <%=@question.id%>'s Record</h1>
+
+<p>Question: <%=@question.question%></p>
+<p>Type: <%=@question.question_type%></p>
+<p>Answer: <%=@question.answer_key%></p>
+
+<h2>If you would like to change the question, use the following form</h2>
+<h3>Please bear in mind, that although the question will be updated the student answers will and outcomes will not. Be careful, this cannot be undone.</h3>
+
+
+<form action="/questions/<%= @question.id%>" method="post">
+    <input type="hidden" name="_method" value="put">
+
+    <label for="">Question</label>
+    <input type="text" name="question" value="<%= @question.question%>">
+
+    <label for="">Type</label>
+    <input type="text" name="question_type" value="<%= @question.question_type%>">
+
+    <label for="">Answer</label>
+    <input type="text" name="answer_key" value="<%= @question.answer_key%>">
+
+    <button>Update Question</button>
+</form>
+
+<form action="/questions/<%= @question.id%>" method="post">
+    <input type="hidden" name="_method" value = "delete">
+    <button>Delete Question</button>
+</form>

@@ -1,0 +1,27 @@
+<h1><%= @class.year%><%= @class.class_letter%>'s Record</h1>
+
+<p>Class Group: <%= @class.year%><%= @class.class_letter%></p>
+<p>Class Teacher: <%= @class.teacher%></p>
+
+<h2>If you would like to update anything, use the following form</h2>
+
+
+<form action="/classes/<%= @class.id%>" method="post">
+    <input type="hidden" name="_method" value="put">
+
+    <label for="">Class Year</label>
+    <input type="text" name="year" value="<%= @class.year%>">
+
+    <label for="">Class Letter</label>
+    <input type="text" name="classletter" value="<%= @class.class_letter%>">
+
+    <label for="">Teacher ID</label>
+    <input type="text" name="teacher_name" value="<%= @class.teacher_id%>" placeholder = "Latin Expert">
+
+    <button>Update Class Record</button>
+</form>
+
+<form action="/classes/<%= @class.id%>" method="post">
+    <input type="hidden" name="_method" value = "delete">
+    <button>Delete Class Record</button>
+</form>

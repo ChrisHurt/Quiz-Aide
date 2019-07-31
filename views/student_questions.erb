@@ -1,0 +1,14 @@
+<h1> Hello <%# @student.name%>Placeholder</h1>
+
+<h2>Questions for self-assessment</h2>
+
+<% @questions.each do |question|%>
+    <p>Question: <%=  question.question%></p>
+    <%# <input type="text"> %>
+    <form action="/students/questions" method="post">
+        <input type="hidden" name="question_id" value="<%=question.id%>">
+        <label for="">Answer: </label>
+        <input type="text" name="answer">
+        <button>Submit Answer</button>
+    </form>
+<% end %>
