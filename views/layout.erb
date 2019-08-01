@@ -14,7 +14,7 @@
       <a href="/classes"><div>Classes</div></a>
       <div class="user"><%= Teacher.find(session[:user_id]).email %>
       <% elsif session[:user_type] == 'Student'%>
-      <a href="/"><div>Answers</div></a>
+      <a href="/answers"><div>Answers</div></a>
       <a href="/"><div>Metrics</div></a>
       <div class="user"><%= Student.find(session[:user_id]).email %>
       <% end %>

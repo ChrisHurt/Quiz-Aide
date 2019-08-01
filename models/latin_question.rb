@@ -1,4 +1,4 @@
-class Latin_Question < ActiveRecord::Base
+class LatinQuestion < ActiveRecord::Base
     belongs_to :teacher
-    has_many :student_answer
+    has_many :student_answers
 end

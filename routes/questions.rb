@@ -1,12 +1,11 @@
-
 post '/students/questions' do
-  student_answer =  Student_Answer.new
+  student_answer =  StudentAnswer.new
   student_answer.student_id = session[:user_id]
-  student_answer.question_id = params[:question_id]
+  student_answer.latin_question_id = params[:latin_question_id]
   student_answer.answer = params[:answer]
   student_answer.outcome = params[:outcome]
   student_answer.save
-  redirect '/students/questions'
+  redirect '/questions'
 end
 
 # All Question Records
@@ -16,10 +15,17 @@ get '/questions' do
   when 'Administrator'
 
   when 'Teacher'
-    @questions = Latin_Question.all
+    @questions = LatinQuestion.all
     erb :teacher_questions
   when 'Student'
-    @questions = Latin_Question.all
+    # Find list of all questions student has attempted
+    attempted_questions = StudentAnswer.all.where(student_id: current_user.id).distinct.pluck(:latin_question_id)
+    all_questions = LatinQuestion.all.pluck(:id)
+
+    @questions = LatinQuestion.all.where.not(id: attempted_questions)
+    # Find a list of all questions the student has not attempted
+
+
     erb :student_questions
   else
     redirect '/login'
@@ -29,7 +35,7 @@ end
 # Show a specific teachers' questions
 get '/teachers/:id/questions' do
   if session[:user_id] && session[:user_type] != 'Student'
-    @questions = Latin_Question.where(teacher_id: params[:id])
+    @questions = LatinQuestion.where(teacher_id: params[:id])
     # Connect to a relevant page
     erb :questions
   else
@@ -41,7 +47,7 @@ end
 # Show all questions
 get '/teachers/questions' do
   if session[:user_id] && session[:user_type] != 'Student'
-    @questions = Latin_Question.all
+    @questions = LatinQuestion.all
     # Connect to a relevant page
     erb :questions
   else
@@ -59,14 +65,14 @@ end
 
 # Individual Question Record
 get '/questions/:id' do
-  @question = Latin_Question.find(params[:id])
+  @question = LatinQuestion.find(params[:id])
 erb :question
 end
 
 # Creating a New Question
 post '/questions' do 
 
-  question = Latin_Question.new
+  question = LatinQuestion.new
   question.body = params[:question]
   question.assessment_type = params[:assessment_type]
   question.answer_key = params[:answer_key]
@@ -77,7 +83,7 @@ end
 
 # Updating a Question Record
 put '/questions/:id' do 
-    question = Latin_Question.find(params[:id])
+    question = LatinQuestion.find(params[:id])
     question.question = params[:question]
     question.question_type = params[:question_type]
     question.answer_key = params[:answer_key]
@@ -87,7 +93,7 @@ end
 
 # Deleting a Question Record
 delete '/questions/:id' do 
-question = Latin_Question.find(params[:id])
+question = LatinQuestion.find(params[:id])
 question.delete
 redirect '/questions'
 end

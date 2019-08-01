@@ -4,21 +4,23 @@
 
 <% @questions.each_with_index do |question,index|%>
     <p class="question">Question: <%=  question.body%></p>
-    <%# <input type="text"> %>
     <form class="question-form" action="/students/questions" method="post">
-        <input type="hidden" name="question_id" value="<%=question.id%>">
+        <input type="hidden" name="latin_question_id" value="<%=question.id%>">
         <label for="">Answer: </label>
         <input class="answer<%=index%>" type="text" name="answer">
         <input type="hidden" value = "<%=question.id%>">
         <button type="button" class="check_answer check_answer<%= index%>">Check Answer</button>
         <span class ="hidden answer_key<%=index%>"><%=question.answer_key%></span>
         <div class="outcomes">
-            ✓:<input type="radio" name="outcome" value="Correct"> 
-            ✗:<input type="radio" name="outcome" value="Incorrect">
-            ?:<input type="radio" name="outcome" value="Unsure" checked>
-            <button type="submit">Submit</button>
+            <span>✓:<input type="radio" name="outcome" value="Correct"></span><!--
+         --><span>✗:<input type="radio" name="outcome" value="Incorrect"></span><!--
+         --><span>?:<input type="radio" name="outcome" value="Unsure" checked></span><!--
+         --><button type="submit">Submit</button>
         </div>
     </form>
 
     <form action=""></form>
+<% end %>
+<% if @questions.length == 0%>
+    <p>Well done! There are no more questions left!</p>
 <% end %>

@@ -26,7 +26,7 @@ end
 # Show a specific teachers' question
 get '/teachers/:id/questions' do
   if session[:user_id] && session[:user_type] != 'Student'
-    @questions = Latin_Question.where(teacher_id: params[:id])
+    @questions = LatinQuestion.where(teacher_id: params[:id])
     # Connect to a relevant page
     erb :questions
   else

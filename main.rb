@@ -81,7 +81,7 @@ end
 
 require_relative 'routes/students'
 require_relative 'routes/classes'
-
+require_relative 'routes/answers'
 
 
 

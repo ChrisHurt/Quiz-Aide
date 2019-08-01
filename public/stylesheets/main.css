@@ -51,10 +51,18 @@ nav > a > div, .user {
 .hidden {
     visibility: hidden;
 }
-.outcomes {
-    /* float: right;
-    margin-right: 2vw; */
-
+.outcomes{
+    display: flex;
+    justify-content: space-around;
+}
+.outcomes > span{
+    padding: 2px;
+    border: 1px solid black;
+}
+.outcomes > span:hover{
+    background-color: #9E9E9E;
+    color: green;
+    transition: all 0.2s linear;
 }
 .question {
     padding: 8px;
@@ -67,4 +75,25 @@ nav > a > div, .user {
 }
 .bottom-border{
     border-bottom: 1px solid black;
+}
+.student_answer_container{
+    width: 100;
+    padding: 10px;
+}
+.student_answer_flex{
+    width: 100%;
+    display: flex;
+    /* justify-content: space-around; */
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.student_answer_flex > span {
+    flex-grow: 0;     /* do not grow   - initial value: 0 */
+    flex-shrink: 0;   /* do not shrink - initial value: 1 */
+    flex-basis: 20%; /* width/height  - initial value: auto */
+    text-align: left;
+}
+.sa-question{
+    display: block;
+    margin-bottom: 5px;
 }
