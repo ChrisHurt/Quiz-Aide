@@ -7,7 +7,7 @@ require_relative 'models/school_class'
 require_relative 'models/student'
 require_relative 'models/student_answer'
 require_relative 'models/teacher'
-
+require 'pry'
 require 'bcrypt'
 
 enable :sessions
@@ -23,14 +23,14 @@ helpers do
   end
 
   def current_user
-    if session[:user_id] && session[:user_type]
+    if session[:user_id] != nil && session[:user_type] != nil
       case session[:user_type]
       when 'Administrator'
         # Administrator.find_by(session[:user_id])
       when 'Teacher'
-        Teacher.find_by(id: session[:user_id])
+        return Teacher.find_by(id: session[:user_id])
       when 'Student'
-        Student.find_by(id: session[:user_id])
+        return Student.find_by(id: session[:user_id])
       end
     else
       nil
@@ -46,10 +46,10 @@ get '/' do
 end
 
 get '/home' do 
-  if session[:user_type] = 'Teacher'
+  if session[:user_type] == 'Teacher'
     @teacher = current_user
     erb :teacher_home
-  elsif session[:user_type] = 'Student'
+  elsif session[:user_type] == 'Student'
     @student = current_user
     erb :student_home
   end
@@ -57,12 +57,6 @@ end
 
 require_relative 'routes/sessions'
 require_relative 'routes/questions'
-
-# Student's home page
-get '/students/home' do
-  # @student - once you have a teacher database
-  erb :student_home
-end
 
 # Student's answer history
 get '/students/answers' do

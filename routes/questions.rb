@@ -1,14 +1,15 @@
 
 post '/students/questions' do
   student_answer =  Student_Answer.new
-  student_answer.studentid = session[:user_id]
-  student_answer.questionid = params[:question_id]
+  student_answer.student_id = session[:user_id]
+  student_answer.question_id = params[:question_id]
   student_answer.answer = params[:answer]
+  student_answer.outcome = params[:outcome]
   student_answer.save
   redirect '/students/questions'
 end
 
-  # All Question Records
+# All Question Records
 get '/questions' do
   case session[:user_type]
 
@@ -16,7 +17,7 @@ get '/questions' do
 
   when 'Teacher'
     @questions = Latin_Question.all
-    erb :questions
+    erb :teacher_questions
   when 'Student'
     @questions = Latin_Question.all
     erb :student_questions
@@ -24,6 +25,31 @@ get '/questions' do
     redirect '/login'
   end
 end
+
+# Show a specific teachers' questions
+get '/teachers/:id/questions' do
+  if session[:user_id] && session[:user_type] != 'Student'
+    @questions = Latin_Question.where(teacher_id: params[:id])
+    # Connect to a relevant page
+    erb :questions
+  else
+    session = {}
+    redirect '/login'
+  end
+end
+
+# Show all questions
+get '/teachers/questions' do
+  if session[:user_id] && session[:user_type] != 'Student'
+    @questions = Latin_Question.all
+    # Connect to a relevant page
+    erb :questions
+  else
+    session = {}
+    redirect '/login'
+  end
+end
+
 
 # New Question Record
 get '/questions/new' do

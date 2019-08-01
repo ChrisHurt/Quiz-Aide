@@ -32,3 +32,39 @@ nav > a > div, .user {
     border: 1px solid #6E6E6E;
     padding: 5px;
 }
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.flex-row > a, .flex-row > div {
+    display: block;
+    text-align: center;
+}
+.flex-item {
+    background-color: #EEE;
+    border: 1px solid #CCC;
+    padding: 5px;
+    flex-grow: 1;
+}
+.hidden {
+    visibility: hidden;
+}
+.outcomes {
+    /* float: right;
+    margin-right: 2vw; */
+
+}
+.question {
+    padding: 8px;
+}
+.question-form{
+    display: flex;
+    justify-content: space-around;
+    padding: 8px;
+    border-bottom: 1px solid black;
+}
+.bottom-border{
+    border-bottom: 1px solid black;
+}

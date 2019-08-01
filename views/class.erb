@@ -1,10 +1,13 @@
 <h1><%= @class.year%><%= @class.class_letter%>'s Record</h1>
 
 <p>Class Group: <%= @class.year%><%= @class.class_letter%></p>
-<p>Class Teacher: <%= @class.teacher%></p>
+<p>Class Teacher: <%= @class.teacher.first_name%></p>
+<a href="/classes/<%=@class.id%>/students">List of Students</a>
 
+
+<% if session[:user_type] == 'Administrator'%>
 <h2>If you would like to update anything, use the following form</h2>
-
+<p>Move the update forms into the administrator's control later</p>
 
 <form action="/classes/<%= @class.id%>" method="post">
     <input type="hidden" name="_method" value="put">
@@ -25,3 +28,4 @@
     <input type="hidden" name="_method" value = "delete">
     <button>Delete Class Record</button>
 </form>
+<% end %>

@@ -50,3 +50,9 @@ delete '/students/:id' do
   student.delete
   redirect '/students'
 end
+
+# List of students by class
+get '/classes/:id/students' do 
+  @students = Student.where(class_id: params[:id])
+  erb :students
+end

@@ -1,9 +1,9 @@
 <h1>Classes</h1>
 
+<% if session[:user_type] == 'Administrator'%>
 <a href="/classes/new"><button>Add A New Class</button></a>
+<% end %>
 
 <% @classes.each do |school_class|%>
    <a href="/classes/<%= school_class.id%>"><p><%= school_class.year%><%= school_class.class_letter%> is led by <%= school_class.teacher.first_name%></p></a>
 <% end %>
-
-<a href="/teachers/home"><button>Return Home</button></a>

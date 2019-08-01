@@ -7,13 +7,13 @@
   <link rel='stylesheet' href='/stylesheets/main.css'>
 </head>
 <body>
-  <%if session[:user_id]%>
+  <%if loggedIn?%>
     <nav>
       <a href="/questions"><div>Questions</div></a>
       <% if session[:user_type] == 'Teacher'  %>
-      <a href="/"><div>Classes</div></a>
+      <a href="/classes"><div>Classes</div></a>
       <div class="user"><%= Teacher.find(session[:user_id]).email %>
-      <% else %>
+      <% elsif session[:user_type] == 'Student'%>
       <a href="/"><div>Answers</div></a>
       <a href="/"><div>Metrics</div></a>
       <div class="user"><%= Student.find(session[:user_id]).email %>
@@ -32,5 +32,6 @@
     <div>
     </div>
   </nav>
+  <script src="/javascripts/application.js"></script>
 </body>
 </html>

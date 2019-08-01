@@ -2,6 +2,7 @@
 
 <p>Class ID <%= @student.class_id%></p>
 
+<% if session[:user_type] == 'Administrator'%>
 <h2>If you would like to update anything, use the following form</h2>
 
 
@@ -33,3 +34,5 @@
     <input type="hidden" name="_method" value = "delete">
     <button>Delete Student Record</button>
 </form>
+
+<% end %>

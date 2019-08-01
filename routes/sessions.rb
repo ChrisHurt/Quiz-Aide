@@ -21,5 +21,6 @@ get '/login' do
   # Logout
   delete '/sessions' do
     session[:user_id] = nil
+    session[:user_type] = nil
     redirect 'login'
   end
