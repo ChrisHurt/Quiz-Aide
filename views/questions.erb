@@ -3,6 +3,9 @@
 <a href="/questions/new"><button>Add A New Question</button></a>
 
 <% @questions.each do |question|%>
+    <% if @questions.distinct.pluck(:teacher_id).length > 1 && question.teacher%>
+    <p>Teacher: <%= question.teacher.first_name%></p>
+    <% end %>
     <p>Question: <%= question.body%></p>
     <p>Type: <%= question.assessment_type%></p>
     <p>Answer: <%= question.answer_key%></p>

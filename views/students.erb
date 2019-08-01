@@ -5,5 +5,5 @@
 <% end %>
 
 <% @students.each do |student|%>
-   <a href="/students/<%= student.id%>"><p><%= student.first_name%> <%= student.middle_name%> <%= student.last_name%> is in class_id <%= student.class_id%></p></a>
+   <a href="/students/<%= student.id%>"><p><%= student.first_name%> <%= student.middle_name%> <%= student.last_name%> is in school_class_id <%= student.school_class_id%></p></a>
 <% end %>

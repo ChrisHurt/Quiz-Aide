@@ -71,24 +71,28 @@ end
 
 # Creating a New Question
 post '/questions' do 
-
-  question = LatinQuestion.new
-  question.body = params[:question]
-  question.assessment_type = params[:assessment_type]
-  question.answer_key = params[:answer_key]
-  question.save
-
+  if loggedIn? && session[:user_type] && session[:user_type] == 'Teacher'
+    question = LatinQuestion.new
+    question.body = params[:question]
+    question.assessment_type = params[:assessment_type]
+    question.answer_key = params[:answer_key]
+    question.teacher_id = current_user.id
+    question.save
+  end
   redirect '/questions'
 end
 
 # Updating a Question Record
-put '/questions/:id' do 
-    question = LatinQuestion.find(params[:id])
-    question.question = params[:question]
-    question.question_type = params[:question_type]
+put '/questions/:id' do
+  if loggedIn? && session[:user_type] && session[:user_type] == 'Teacher'
+    question = LatinQuestion.find_by(id: params[:id])
+    question.body = params[:body]
+    question.assessment_type = params[:assessment_type]
     question.answer_key = params[:answer_key]
+    question.teacher_id = current_user.id
     question.save
-    redirect '/questions'
+  end
+  redirect '/questions'
 end
 
 # Deleting a Question Record

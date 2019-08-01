@@ -23,7 +23,7 @@ post '/students' do
   student.first_name = params[:first_name]
   student.middle_name = params[:middle_name]
   student.last_name = params[:last_name]
-  student.class_id = params[:class_id]
+  student.school_class_id = params[:school_class_id]
   student.email = params[:email]
   student.password = params[:password]
   student.save
@@ -37,7 +37,7 @@ put '/students/:id' do
   student.first_name = params[:first_name]
   student.middle_name = params[:middle_name]
   student.last_name = params[:last_name]
-  student.class_id = params[:class_id]
+  student.school_class_id = params[:school_class_id]
   student.email = params[:email]
   student.password = params[:password]
   student.save
@@ -53,6 +53,6 @@ end
 
 # List of students by class
 get '/classes/:id/students' do 
-  @students = Student.where(class_id: params[:id])
+  @students = Student.where(school_class_id: params[:id])
   erb :students
 end

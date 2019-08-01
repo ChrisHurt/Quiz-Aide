@@ -1,10 +1,14 @@
 <h1><%= @student.first_name%> <%= @student.middle_name%> <%= @student.last_name%>'s Record</h1>
 
-<p>Class ID <%= @student.class_id%></p>
+<h2><%= @student.school_class.year%><%= @student.school_class.class_letter%></h2>
 
-<% if session[:user_type] == 'Administrator'%>
+<% if @student.student_answers.where(reviewed: true).length > 0 %>
+<h3>Overall Performace</h3>
+<p>Question % Correct: <%= (@student.student_answers.where(reviewed: true).where(outcome: 'Correct').length / @student.student_answers.where(reviewed: true).length)%> </p>
+<% end %>
+
+<% if current_user.class.to_s == 'Administrator'%>
 <h2>If you would like to update anything, use the following form</h2>
-
 
 <form action="/students/<%= @student.id%>" method="post">
     <input type="hidden" name="_method" value="put">
@@ -19,7 +23,7 @@
     <input type="text" name ="last_name" value="<%= @student.last_name%>">
 
     <label for="">Class ID</label>
-    <input type="text" name ="class_id" value="<%= @student.class_id%>">
+    <input type="text" name ="school_class_id" value="<%= @student.school_class_id%>">
 
     <label for="">Email</label>
     <input type="text" name ="email" value="<%= @student.email%>">
