@@ -97,3 +97,8 @@ nav > a > div, .user {
     display: block;
     margin-bottom: 5px;
 }
+
+.student_answer_container:hover{
+    background-color: #9E9E9E;
+    transition: all 0.2s linear;
+}

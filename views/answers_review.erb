@@ -1,0 +1,27 @@
+<% num_records = 0%>
+<% @review_questions.length.times do |index|%>
+    <% if @review_questions[index].reviewed == false%>
+        <div class="student_answer_container">
+            <span class = "sa-question">Question: <%=@review_questions[index].latin_question.body%></span>
+            <div class="student_answer_flex bottom-border">
+                <span>Student: <%= @review_questions[index].student.first_name%></span>
+                <span>Given Answer: <%=@review_questions[index].answer%></span>
+                <span>Answer Key: <%=@review_questions[index].latin_question.answer_key%></span>
+                <span>Outcome: <%=@review_questions[index].outcome%></span>
+                <form action="/answers<%=@review_questions[index].id%>" method="post">
+                    <input type="hidden" name="_method" value ="put">
+                    <div class="outcomes">
+                        <span>✓:<input type="radio" name="outcome" value="Correct"  <%= (@review_questions[index].outcome=="Correct") ? "checked" : " "%> ></span><!--
+                    --><span>✗:<input type="radio" name="outcome" value="Incorrect" <%= (@review_questions[index].outcome=="Incorrect") ? "checked" : " "%>></span><!--
+                    --><span>?:<input type="radio" name="outcome" value="Unsure"    <%= (@review_questions[index].outcome=="Unsure") ? "checked" : " "%>></span><!--
+                    --><button type="submit">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <% num_records += 1 %>
+    <% end %>
+<% end %>
+<% if num_records == 0%>
+    <h1>No more questions to review!</h1>
+<% end %>
