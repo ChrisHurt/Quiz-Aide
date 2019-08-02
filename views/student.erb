@@ -4,7 +4,9 @@
 
 <% if @student.student_answers.where(reviewed: true).length > 0 %>
 <h3>Overall Performace</h3>
-<p>Question % Correct: <%= (@student.student_answers.where(reviewed: true).where(outcome: 'Correct').length / @student.student_answers.where(reviewed: true).length)%> </p>
+<p>Question % Correct: <%= (@student.student_answers.where(reviewed: true).where(outcome: 'Correct').length.to_d / @student.student_answers.where(reviewed: true).length)%> </p>
+<h3>Recent Performance: Last <%=@student.student_answers.where(reviewed: true).limit(10).length%> Questions</h3>
+<p>Question % Correct: <%= (@student.student_answers.where(reviewed: true).limit(10).where(outcome: 'Correct').length.to_d / @student.student_answers.where(reviewed: true).limit(10).length)%> </p>
 <% end %>
 
 <% if current_user.class.to_s == 'Administrator'%>
