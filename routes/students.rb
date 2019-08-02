@@ -1,24 +1,29 @@
-
-# All Student Records
+# All Users: All Student Records
 get '/students' do 
+  redirect '/login' unless logged_in?
   @students = Student.all
   erb :students
 end
 
-# New Student Record
+# Admin: New Student Record
 get '/students/new' do
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Administrator'
   erb :add_student
 end
 
-# Individual Student Record
+# Admin|Teacher: Individual Student Record
 get '/students/:id' do
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
   @student = Student.find(params[:id])
   erb :student
 end
     
-# Creating a New Student
+# Admin: Creating a New Student
 post '/students' do 
-
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Administrator'
   student = Student.new
   student.first_name = params[:first_name]
   student.middle_name = params[:middle_name]
@@ -31,8 +36,10 @@ post '/students' do
   redirect '/students'
 end
     
-# Updating a Student Record
-put '/students/:id' do 
+# Admin: Updating a Student Record
+put '/students/:id' do
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Administrator'
   student = Student.find(params[:id])
   student.first_name = params[:first_name]
   student.middle_name = params[:middle_name]
@@ -44,15 +51,19 @@ put '/students/:id' do
   redirect '/students'
 end
     
-# Deleting a Student Record
-delete '/students/:id' do 
+# Admin: Deleting a Student Record
+delete '/students/:id' do
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Administrator'
   student = Student.find(params[:id])
   student.delete
   redirect '/students'
 end
 
-# List of students by class
-get '/classes/:id/students' do 
+# Admin|Teacher: List of students by class
+get '/classes/:id/students' do
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
   @students = Student.where(school_class_id: params[:id])
   erb :students
 end

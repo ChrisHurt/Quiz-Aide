@@ -7,4 +7,4 @@ require_relative 'models/student'
 require_relative 'models/student_answer'
 require_relative 'models/teacher'
 
-binding.pry
+# binding.pry

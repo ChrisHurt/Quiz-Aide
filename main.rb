@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'sinatra/reloader'
+# require 'sinatra/reloader'
 require_relative 'database_config'
 
 require_relative 'models/latin_question'
@@ -18,7 +18,7 @@ end
 
 helpers do
 
-  def loggedIn?
+  def logged_in?
     !!current_user
   end
 
@@ -41,45 +41,29 @@ end
 
 # Home Page
 get '/' do
-  redirect '/login' unless session[:user_id]
-  "placeholder text"
+  redirect '/home' unless logged_in?
+  redirect '/login'
 end
 
 get '/home' do 
-  if session[:user_type] == 'Teacher'
+  if logged_in? && session[:user_type] == 'Teacher'
     @teacher = current_user
     erb :teacher_home
   elsif session[:user_type] == 'Student'
     @student = current_user
     erb :student_home
+  else
+    redirect '/login'
   end
 end
 
 require_relative 'routes/sessions'
 require_relative 'routes/questions'
-
-# Student's answer history
-get '/students/answers' do
-  # @student - once you have a teacher database
-  # After authentication, consolidate the home page
-  erb :student_answers
-end
-
-# Student's metrics
-get '/students/metrics' do
-  # @student - once you have a teacher database
-  # After authentication, consolidate the home page
-  erb :student_metrics
-end
-
-# Teacher's home page
-get '/teachers/home' do
-  # @teacher - once you have a teacher database
-  # After authentication, consolidate the home page
-  erb :teacher_home
-end
-
 require_relative 'routes/students'
 require_relative 'routes/classes'
 require_relative 'routes/answers'
 require_relative 'routes/metrics'
+
+get '/:route_not_found' do
+  erb :page_not_found
+end

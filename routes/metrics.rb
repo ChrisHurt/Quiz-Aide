@@ -1,6 +1,6 @@
 get '/metrics' do
-    if current_user.class.to_s == 'Student'
-        @student = current_user
-        erb :student
-    end 
+    redirect '/login' unless logged_in?
+    redirect '/home' unless session[:user_type] == 'Student'
+    @student = current_user
+    erb :student
 end

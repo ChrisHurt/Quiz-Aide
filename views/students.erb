@@ -5,5 +5,13 @@
 <% end %>
 
 <% @students.each do |student|%>
-   <a href="/students/<%= student.id%>"><p><%= student.first_name%> <%= student.middle_name%> <%= student.last_name%> is in school_class_id <%= student.school_class_id%></p></a>
+   <a href="/students/<%= student.id%>"><p><%= student.first_name%> <%= student.middle_name%> <%= student.last_name%></p></a>
+   <a href="/students/<%= student.id%>">
+   <h3>Recent Performance: <!--
+    --><% if student.student_answers.where(reviewed: true).length > 0%>
+    <%= (student.student_answers.where(reviewed: true).limit(10).where(outcome: 'Correct').length.to_d / student.student_answers.where(reviewed: true).limit(10).length)*100%>%
+    <% else %>
+        Not enough data
+    <% end %>
+   </h3></a>
 <% end %>

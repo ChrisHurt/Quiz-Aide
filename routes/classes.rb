@@ -1,57 +1,45 @@
-
-# All Class Records
+# Admin|Teacher:  View Teacher Class Options
 get '/classes' do 
-  # @classes = SchoolClass.all
-  # erb :classes
-
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
   erb :teacher_classes
 end
 
-get '/teachers/classes' do 
+# Admin|Teacher:  View All Class Records
+get '/teachers/classes' do
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
   @classes = SchoolClass.all
   erb :classes
 end
 
+# Admin|Teacher:  View A Single Class Record
 get '/teachers/:id/classes' do 
-  if session[:user_id] && session[:user_type] != 'Student'
-    @classes = SchoolClass.where(teacher_id: params[:id])
-    erb :classes
-  else
-    session = {}
-    redirect '/login'
-  end
-
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
+  @classes = SchoolClass.where(teacher_id: params[:id])
+  erb :classes
 end
 
-# Show a specific teachers' question
-get '/teachers/:id/questions' do
-  if session[:user_id] && session[:user_type] != 'Student'
-    @questions = LatinQuestion.where(teacher_id: params[:id])
-    # Connect to a relevant page
-    erb :questions
-  else
-    session = {}
-    redirect '/login'
-  end
-end
-
-
-
-
-# New Class Record
+# Admin: View New Class Page
 get '/classes/new' do
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Administrator'
   erb :add_class
 end
     
-# Individual Class Record
+# Admin|Teacher: Individual Class Record
 get '/classes/:id' do
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
   @class = SchoolClass.find(params[:id])
   erb :class
 end
     
-# Creating a New Class
+# Admin: Creating a New Class
 post '/classes' do 
-  
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Administrator'
   school_class = SchoolClass.new
   school_class.year = params[:year]
   school_class.class_letter = params[:class_letter]
@@ -61,8 +49,10 @@ post '/classes' do
   redirect '/classes'
 end
   
-# Updating a Class Record
-put '/classes/:id' do 
+# Admin: Updating a Class Record
+put '/classes/:id' do
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Administrator'
   school_class = SchoolClass.find(params[:id])
   school_class.year = params[:year]
   school_class.class_letter = params[:class_letter]
@@ -71,8 +61,10 @@ put '/classes/:id' do
   redirect '/classes'
 end
   
-# Deleting a Class Record
-delete '/classes/:id' do 
+# Admin: Deleting a Class Record
+delete '/classes/:id' do
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Administrator'
   school_class = SchoolClass.find(params[:id])
   school_class.delete
   redirect '/classes'

@@ -1,15 +1,6 @@
-post '/students/questions' do
-  student_answer =  StudentAnswer.new
-  student_answer.student_id = session[:user_id]
-  student_answer.latin_question_id = params[:latin_question_id]
-  student_answer.answer = params[:answer]
-  student_answer.outcome = params[:outcome]
-  student_answer.save
-  redirect '/questions'
-end
-
-# All Question Records
+# Admin|Teacher|Student: View Relevant Question Records
 get '/questions' do
+  redirect '/login' unless logged_in? 
   case session[:user_type]
 
   when 'Administrator'
@@ -18,23 +9,18 @@ get '/questions' do
     @questions = LatinQuestion.all
     erb :teacher_questions
   when 'Student'
-    # Find list of all questions student has attempted
     attempted_questions = StudentAnswer.all.where(student_id: current_user.id).distinct.pluck(:latin_question_id)
-    all_questions = LatinQuestion.all.pluck(:id)
-
     @questions = LatinQuestion.all.where.not(id: attempted_questions)
-    # Find a list of all questions the student has not attempted
-
-
     erb :student_questions
   else
     redirect '/login'
   end
 end
 
-# Show a specific teachers' questions
+# Admin|Teacher: Show a specific teachers' questions
 get '/teachers/:id/questions' do
-  if session[:user_id] && session[:user_type] != 'Student'
+  redirect '/login' unless logged_in?
+  if session[:user_type] != 'Student'
     @questions = LatinQuestion.where(teacher_id: params[:id])
     # Connect to a relevant page
     erb :questions
@@ -44,11 +30,19 @@ get '/teachers/:id/questions' do
   end
 end
 
-# Show all questions
+# Admin|Teacher:  View questions added by a specific teacher
+get '/teachers/:id/questions' do
+  redirect '/login' unless logged_in?
+  redirect '/home' unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
+  @questions = LatinQuestion.where(teacher_id: params[:id])
+  erb :questions
+end
+
+# Admin|Teacher: Show all questions
 get '/teachers/questions' do
-  if session[:user_id] && session[:user_type] != 'Student'
+  redirect '/login' unless logged_in?
+  if session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
     @questions = LatinQuestion.all
-    # Connect to a relevant page
     erb :questions
   else
     session = {}
@@ -57,21 +51,24 @@ get '/teachers/questions' do
 end
 
 
-# New Question Record
+# Teacher: New Question Record
 get '/questions/new' do
-  redirect '/questions' unless (session[:user_id] && (session[:user_type] != 'Student'))
+  redirect '/login' unless logged_in?
+  redirect '/questions' unless session[:user_type] == 'Teacher'
   erb :add_question
 end
 
-# Individual Question Record
+# Admin|Teacher: Individual Question Record
 get '/questions/:id' do
+  redirect '/login' unless logged_in?
+  redirect '/questions' unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
   @question = LatinQuestion.find(params[:id])
 erb :question
 end
 
-# Creating a New Question
+# Teacher: Creating a New Question
 post '/questions' do 
-  if loggedIn? && session[:user_type] && session[:user_type] == 'Teacher'
+  if logged_in? && session[:user_type] && session[:user_type] == 'Teacher'
     question = LatinQuestion.new
     question.body = params[:question]
     question.assessment_type = params[:assessment_type]
@@ -84,7 +81,7 @@ end
 
 # Updating a Question Record
 put '/questions/:id' do
-  if loggedIn? && session[:user_type] && session[:user_type] == 'Teacher'
+  if logged_in? && session[:user_type] == 'Administrator' || session[:user_type] == 'Teacher'
     question = LatinQuestion.find_by(id: params[:id])
     question.body = params[:body]
     question.assessment_type = params[:assessment_type]
@@ -97,7 +94,9 @@ end
 
 # Deleting a Question Record
 delete '/questions/:id' do 
-question = LatinQuestion.find(params[:id])
-question.delete
-redirect '/questions'
+  redirect '/login' unless logged_in?
+  redirect '/questions' unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
+  question = LatinQuestion.find(params[:id])
+  question.delete
+  redirect '/questions'
 end
