@@ -7,7 +7,7 @@ require_relative 'models/school_class'
 require_relative 'models/student'
 require_relative 'models/student_answer'
 require_relative 'models/teacher'
-require 'pry'
+# require 'pry'
 require 'bcrypt'
 
 enable :sessions

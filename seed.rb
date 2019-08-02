@@ -1,4 +1,4 @@
-require  'pry'
+# require  'pry'
 require_relative 'database_config'
 require 'bcrypt'
 require_relative 'models/latin_question'
