@@ -33,7 +33,7 @@ end
 # Admin|Teacher:  View questions added by a specific teacher
 get '/teachers/:id/questions' do
   redirect '/login' unless logged_in?
-  redirect '/home' unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
+  erb :page_not_found unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
   @questions = LatinQuestion.where(teacher_id: params[:id])
   erb :questions
 end

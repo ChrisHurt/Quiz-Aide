@@ -1,4 +1,4 @@
-<h1>Students</h1>
+<h1>Students of <%= @students.first.school_class.year%><%= @students.first.school_class.class_letter%></h1>
 
 <% if session[:user_type] == 'Administrator'%>
 <a href="/students/new"><button>Add A New Student</button></a>

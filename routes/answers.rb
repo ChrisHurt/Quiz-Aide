@@ -13,7 +13,7 @@ end
 
 get '/answers/review' do
     redirect '/login' unless logged_in?
-    redirect '/home' unless session[:user_type] == 'Administrator'
+    erb :page_not_found unless session[:user_type] == 'Administrator'
     if logged_in? && session[:user_type] == 'Teacher'
         teachers_questions = current_user.latin_questions
         @review_questions = []
@@ -46,7 +46,7 @@ end
 # Admin|Teacher: Review an answer and update the outcome
 put '/answers:id' do
     redirect '/login' unless logged_in?
-    redirect '/home' unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
+    erb :page_not_found unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
     student_answer = StudentAnswer.find_by(id: params[:id])
     student_answer.outcome = params[:outcome]
     student_answer.reviewed = true
