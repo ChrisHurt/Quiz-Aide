@@ -7,14 +7,14 @@
         <h2 class="question">Question: <%=  question.body%></h2>
         <form class="question-form" action="/students/questions" method="post">
             
-            <%# Question ID %>
+            
 
             <%# Answer Input %>
             <div class="first-row">
                 <label for="">Answer: </label>
                 <input class="answer<%=index%>" type="text" name="answer">
                 <button type="button" class="check_answer check_answer<%= index%>">Check Answer</button>
-                
+                <%# Question ID %>
                 <input type="hidden" name="latin_question_id" value="<%=question.id%>">
                 <input type="hidden" value = "<%=question.id%>">
             </div>

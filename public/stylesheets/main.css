@@ -165,36 +165,53 @@ input[type='radio']:checked:after {
     border-bottom: 1px solid black;
 }
 .student_answer_container{
+    width: 700px;
     min-width: 40%;
+    /* max-width: 50%; */
     padding: 10px;
-    text-align: left;
+    text-align: left;   
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     flex-grow: 0;
     flex-shrink: 0;
+    box-shadow: 0rem 0rem 0.2rem #4257B2;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
 }
 .student_answer_flex{
     width: 100%;
     display: flex;
-    /* justify-content: space-around; */
     padding-top: 5px;
     padding-bottom: 5px;
 }
 .student_answer_flex > span {
     flex-grow: 1;     /* do not grow   - initial value: 0 */
     flex-shrink: 0;   /* do not shrink - initial value: 1 */
-    /*flex-basis: 50%;  width/height  - initial value: auto */
+    flex-basis: 50%;  /*width/height  - initial value: auto*/
     text-align: left;
 }
 .sa-question{
+    width: 100%;
     display: block;
     margin-bottom: 5px;
 }
+.review {
+    width: 100%;
+    text-align:right;
+}
+.review > * {
+    background-color: #4257B2;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+}
 
 .student_answer_container:hover{
-    background-color: #9E9E9E;
+    background-color: #4257B2;
+    color: white;
     transition: all 0.2s linear;
 }
 /* Button Styling */
