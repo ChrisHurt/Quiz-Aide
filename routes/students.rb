@@ -1,8 +1,14 @@
-# All Users: All Student Records
+# Admin|Teacher: All Student Records
 get '/students' do 
   redirect '/login' unless logged_in?
-  @students = Student.all
-  erb :students
+  case session[:user_type]
+  when 'Teacher', 'Administrator'
+    @students = Student.all
+    erb :students
+  else
+    erb :page_not_found
+  end
+
 end
 
 # Admin: New Student Record
@@ -46,7 +52,9 @@ put '/students/:id' do
   student.last_name = params[:last_name]
   student.school_class_id = params[:school_class_id]
   student.email = params[:email]
-  student.password = params[:password]
+  if !(params[:password] == nil || params[:password] == "")
+    student.password = params[:password]
+  end
   student.save
   redirect '/students'
 end

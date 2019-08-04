@@ -7,6 +7,7 @@ require_relative 'models/school_class'
 require_relative 'models/student'
 require_relative 'models/student_answer'
 require_relative 'models/teacher'
+require_relative 'models/administrator'
 # require 'pry'
 require 'bcrypt'
 
@@ -26,7 +27,7 @@ helpers do
     if session[:user_id] != nil && session[:user_type] != nil
       case session[:user_type]
       when 'Administrator'
-        # Administrator.find_by(session[:user_id])
+        return Administrator.find_by(id: session[:user_id])
       when 'Teacher'
         return Teacher.find_by(id: session[:user_id])
       when 'Student'
@@ -52,6 +53,9 @@ get '/home' do
   elsif session[:user_type] == 'Student'
     @student = current_user
     erb :student_home
+  elsif  session[:user_type] == 'Administrator'
+    @admin = current_user
+    erb :admin_home
   else
     redirect '/login'
   end
@@ -63,6 +67,7 @@ require_relative 'routes/students'
 require_relative 'routes/classes'
 require_relative 'routes/answers'
 require_relative 'routes/metrics'
+require_relative 'routes/teachers'
 
 get '/:route_not_found' do
   erb :page_not_found

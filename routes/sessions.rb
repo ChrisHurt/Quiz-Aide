@@ -7,7 +7,19 @@ end
 post '/sessions' do 
   user = Student.find_by(email: params[:email])
   if !user
+    user = Student.find_by(user_name: params[:email])
+  end
+  if !user
     user = Teacher.find_by(email: params[:email])
+  end
+  if !user 
+    user = Teacher.find_by(user_name: params[:email])
+  end
+  if !user
+    user = Administrator.find_by(email: params[:email])
+  end
+  if !user 
+    user = Administrator.find_by(user_name: params[:email])
   end
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id

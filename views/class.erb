@@ -1,5 +1,6 @@
-<h1><%= @class.year%><%= @class.class_letter%>'s Record</h1>
-
+<div class="h1-portlet">
+    <h1><%= @class.year%><%= @class.class_letter%>'s Record</h1>
+</div>
 <p>Class Group: <%= @class.year%><%= @class.class_letter%></p>
 <p>Class Teacher: <%= @class.teacher.first_name%></p>
 <a href="/classes/<%=@class.id%>/students">List of Students</a>

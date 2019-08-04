@@ -1,5 +1,6 @@
-<h1><%= @student.first_name%> <%= @student.middle_name%> <%= @student.last_name%>'s Record</h1>
-
+<div class="h1-portlet">
+    <h1><%= @student.first_name%> <%= @student.middle_name%> <%= @student.last_name%>'s Record</h1>
+</div>
 <h2>School Class: <%= @student.school_class.year%><%= @student.school_class.class_letter%></h2>
 <h2>Class Teacher: <%=@student.school_class.teacher.first_name + ' ' + @student.school_class.teacher.last_name%></h2>
 

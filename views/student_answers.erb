@@ -1,19 +1,26 @@
 <h2><%=@student.first_name%>'s Answer History</h2>
-
+<div class="questions-container">
 <% @student_answers.each do |answer|%>
-<div class="student_answer_container">
-    <span class = "sa-question">Question: <%=answer.latin_question.body%></span>
-    <div class="student_answer_flex bottom-border">
-        <span>Given Answer: <%=answer.answer%></span>
-        <span>Answer Key: <%=answer.latin_question.answer_key%></span>
-        <span>Outcome: <%=answer.outcome%></span>
-        <span>Date: <%=answer.created_at.day%>/<%=answer.created_at.month%>/<%=answer.created_at.year%></span>
-        <% if answer.reviewed == true%>
-        <span>Reviewed</span>
-        <% else %>
-        <span>Awaiting Review</span>
-        <% end %>
-        </span>
+<%# <div class="col"> %>
+    <div class="student_answer_container">
+        <h2 class = "sa-question">Question: <%=answer.latin_question.body%></h2>
+        <div class="student_answer_flex">
+            <span>Given Answer: <%=answer.answer%></span>
+            <span>Answer Key: <%=answer.latin_question.answer_key%></span>
+        </div>
+        <div class="student_answer_flex">
+            <span>Outcome: <%=answer.outcome%></span>
+            <span>Date: <%=answer.created_at.day%>/<%=answer.created_at.month%>/<%=answer.created_at.year%></span>
+            </span>
+        </div>
+        <div class="review">
+            <% if answer.reviewed == true%>
+            <span>Reviewed</span>
+            <% else %>
+            <span>Awaiting Review</span>
+            <% end %>
+        </div>
     </div>
-</div>
+<%# </div> %>
 <% end %>
+</div>

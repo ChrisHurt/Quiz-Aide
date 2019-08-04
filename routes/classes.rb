@@ -1,8 +1,17 @@
 # Admin|Teacher:  View Teacher Class Options
 get '/classes' do 
   redirect '/login' unless logged_in?
-  erb :page_not_found unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
-  erb :teacher_classes
+  case session[:user_type]
+  when 'Teacher'
+    erb :teacher_classes
+  when 'Administrator'
+    # session[:user_type].to_s
+    @classes = SchoolClass.all
+    erb :classes
+  else
+    
+    erb :page_not_found
+  end  
 end
 
 # Admin|Teacher:  View All Class Records

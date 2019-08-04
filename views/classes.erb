@@ -1,9 +1,16 @@
-<h1>Classes</h1>
+<div class="h1-portlet">
+    <h1>Classes</h1>
+</div>
 
 <% if session[:user_type] == 'Administrator'%>
 <a href="/classes/new"><button>Add A New Class</button></a>
 <% end %>
 
 <% @classes.each do |school_class|%>
-   <a href="/classes/<%= school_class.id%>"><p><%= school_class.year%><%= school_class.class_letter%> is led by <%= school_class.teacher.first_name%></p></a>
+    <% if school_class.teacher %>
+    <a href="/classes/<%= school_class.id%>"><p><%= school_class.year%><%= school_class.class_letter%> is led by <%= school_class.teacher.first_name%></p></a>
+    <% else %>
+    <a href="/classes/<%= school_class.id%>"><p><%= school_class.year%><%= school_class.class_letter%> is awaiting a new teacher</p></a>
+    <% end %>
+
 <% end %>

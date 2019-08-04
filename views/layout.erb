@@ -7,27 +7,33 @@
   <link rel='stylesheet' href='/stylesheets/main.css'>
 </head>
 <body>
+    <nav class="top-bar">
   <%if logged_in?%>
-    <nav>
+      <% if session[:user_type] == 'Teacher'   %>
       <a href="/questions"><div>Questions</div></a>
-      <% if session[:user_type] == 'Teacher'  %>
       <a href="/classes"><div>Classes</div></a>
       <div class="user"><%= Teacher.find(session[:user_id]).email %>
       <% elsif session[:user_type] == 'Student'%>
+      <a href="/questions"><div>Questions</div></a>
       <a href="/answers"><div>Answers</div></a>
       <a href="/metrics"><div>Metrics</div></a>
       <div class="user"><%= Student.find(session[:user_id]).email %>
+      <% elsif session[:user_type] == 'Administrator'%>
+      <a href="/teachers"><div>Teachers</div></a>
+      <a href="/classes"><div>Classes</div></a>
+      <a href="/students"><div>Students</div></a>
+      <div class="user"><%= Administrator.find(session[:user_id]).email %>
       <% end %>
         <form action="/sessions" method="post">
           <input type="hidden" name="_method" value="delete">
           <button>logout</button>
         </form>
       </div>
-    </nav>
-  <% else %>
-    <a href="/login"><button>login</button></a>
   <%end%>
+    </nav>
+  <main>
   <%= yield %>
+  </main>
   <nav class="bottom-bar">
     <div>
     </div>

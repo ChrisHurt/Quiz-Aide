@@ -1,26 +1,40 @@
-<h1> Hello <% current_user.first_name%></h1>
-
-<h2 class="bottom-border">Questions for self-assessment</h2>
-
+<div class="h1-portlet">
+    <h1>Questions for self-assessment</h1>
+</div>
+<div class="questions-container">
 <% @questions.each_with_index do |question,index|%>
-    <p class="question">Question: <%=  question.body%></p>
-    <form class="question-form" action="/students/questions" method="post">
-        <input type="hidden" name="latin_question_id" value="<%=question.id%>">
-        <label for="">Answer: </label>
-        <input class="answer<%=index%>" type="text" name="answer">
-        <input type="hidden" value = "<%=question.id%>">
-        <button type="button" class="check_answer check_answer<%= index%>">Check Answer</button>
-        <span class ="hidden answer_key<%=index%>"><%=question.answer_key%></span>
-        <div class="outcomes">
-            <span>✓:<input type="radio" name="outcome" value="Correct"></span><!--
-         --><span>✗:<input type="radio" name="outcome" value="Incorrect"></span><!--
-         --><span>?:<input type="radio" name="outcome" value="Unsure" checked></span><!--
-         --><button type="submit">Submit</button>
-        </div>
-    </form>
+    <div class="question-div">
+        <h2 class="question">Question: <%=  question.body%></h2>
+        <form class="question-form" action="/students/questions" method="post">
+            
+            <%# Question ID %>
 
-    <form action=""></form>
+            <%# Answer Input %>
+            <div class="first-row">
+                <label for="">Answer: </label>
+                <input class="answer<%=index%>" type="text" name="answer">
+                <button type="button" class="check_answer check_answer<%= index%>">Check Answer</button>
+                
+                <input type="hidden" name="latin_question_id" value="<%=question.id%>">
+                <input type="hidden" value = "<%=question.id%>">
+            </div>
+            <%# ... %>
+
+            <%# Check the answer (DOM Interaction Only) %>
+            <div class="first-row">
+                <label for="">Answer  Key: </label>
+                <span class ="hidden answer_key<%=index%>"><%=question.answer_key%></span>
+            </div>
+            <div class="outcomes">
+                <span>✓:<input type="radio" name="outcome" value="Correct"></span><!--
+            --><span>✗:<input type="radio" name="outcome" value="Incorrect"></span><!--
+            --><span>?:<input type="radio" name="outcome" value="Unsure" checked></span><!--
+            --><button type="submit">Submit Outcome</button>
+            </div>
+        </form>
+    </div>
 <% end %>
 <% if @questions.length == 0%>
     <p>Well done! There are no more questions left!</p>
 <% end %>
+</div>

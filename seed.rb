@@ -12,13 +12,22 @@ first_names = ['Carla','Chris','John', "Sally", 'Sven', 'Georgia']
 middle_names = ['William', "Sally", 'Sven', 'Elizabeth']
 last_names = ['Hurt','Schodde','Herald', "Simmons", 'James', 'Smith']
 
+a = Administrator.new
+a.first_name = first_names.sample
+a.middle_name = middle_names.sample
+a.last_name = last_names.sample
+a.user_name = (a.first_name[0] + a.last_name[0..2]).downcase
+a.email = 'a'
+a.password = 'a'
+a.save
+
 4.times do |index|
     attempts = 0
     t = Teacher.new
     t.first_name = first_names.sample + index.to_s
     t.middle_name = middle_names.sample + index.to_s
     t.last_name = last_names.sample + index.to_s
-    t.user_name = t.first_name[0] + t.last_name[0..2]
+    t.user_name = (t.first_name[0] + t.last_name[0..2]).downcase
     while (Teacher.where(user_name: t.user_name).length > 0 || Student.where(user_name: t.user_name).length > 0 || Administrator.where(user_name: t.user_name).length > 0) && attempts < 10 
         t.user_name += rand(0..9).to_s
         attempts += 1
@@ -50,7 +59,7 @@ last_names = ['Hurt','Schodde','Herald', "Simmons", 'James', 'Smith']
                 s.first_name = first_names.sample + index3.to_s
                 s.middle_name = middle_names.sample + index3.to_s
                 s.last_name = last_names.sample + index3.to_s
-                s.user_name = 's' + index3.to_s
+                s.user_name = (s.first_name[0] + s.last_name[0..2]).downcase
                 attempts = 0
                 while (Teacher.where(user_name: s.user_name).length > 0 || Student.where(user_name: s.user_name).length > 0 || Administrator.where(user_name: s.user_name).length > 0) && attempts < 10 
                     s.user_name += rand(0..9).to_s

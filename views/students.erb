@@ -1,17 +1,23 @@
-<h1>Students of <%= @students.first.school_class.year%><%= @students.first.school_class.class_letter%></h1>
 
+<% if @students.length == 1%>
+<h1>Students of <%= @students.first.school_class.year%><%= @students.first.school_class.class_letter%></h1>
+<% else %>
+<div class="h1-portlet">
+    <h1>List of All Students</h1>
+</div>
+<% end %>
 <% if session[:user_type] == 'Administrator'%>
 <a href="/students/new"><button>Add A New Student</button></a>
 <% end %>
 
 <% @students.each do |student|%>
-   <a href="/students/<%= student.id%>"><p><%= student.first_name%> <%= student.middle_name%> <%= student.last_name%></p></a>
+   <a href="/students/<%= student.id%>"><h4><%= student.school_class.year%><%= student.school_class.class_letter%>: <%= student.first_name%> <%= student.last_name%></h4></a>
    <a href="/students/<%= student.id%>">
-   <h3>Recent Performance: <!--
+   <p>Recent Performance: <!--
     --><% if student.student_answers.where(reviewed: true).length > 0%>
     <%= (student.student_answers.where(reviewed: true).limit(10).where(outcome: 'Correct').length.to_d / student.student_answers.where(reviewed: true).limit(10).length)*100%>%
     <% else %>
         Not enough data
     <% end %>
-   </h3></a>
-<% end %>
+   </p></a>
+<% end %> 
