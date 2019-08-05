@@ -1,35 +1,44 @@
 <div class="h1-portlet">
     <h1><%= @teacher.first_name%> <%= @teacher.middle_name%> <%= @teacher.last_name%>'s Record</h1>
 </div>
-<h2>School Classes: Content Pending</h2>
 
 <% if current_user.class.to_s == 'Administrator'%>
-<h2>If you would like to update anything, use the following form</h2>
+<div class="portlet">
+    <br/>
+    <h1>Update Teacher Data</h1>
+    <br/>
+    <form class = "student-update-form" action="/teachers/<%= @teacher.id%>" method="post">
+        <input type="hidden" name="_method" value="put">
+        <div class = "student-update-form-row">
+            <div class="label-input-pair">
+                <label for="">First Name</label>
+                <input type="text" name ="first_name" value="<%= @teacher.first_name%>">
+            </div>
+            <div class="label-input-pair">
+                <label for="">Middle Name</label>
+                <input type="text" name ="middle_name" value="<%= @teacher.middle_name%>">
+            </div>
+            <div class="label-input-pair">
+                <label for="">Last Name</label>
+                <input type="text" name ="last_name" value="<%= @teacher.last_name%>">
+            </div>
+        </div>
+        <div class = "student-update-form-row">
+            <div class="label-input-pair">
+                <label for="">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name ="email" value="<%= @teacher.email%>">
+            </div>
+            <div class="label-input-pair">
+                <label for="">Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="password" name ="password">
+            </div>
+        </div>
+        <button>Update Teacher Details</button>
+    </form>
 
-<form action="/teachers/<%= @teacher.id%>" method="post">
-    <input type="hidden" name="_method" value="put">
-
-    <label for="">First Name</label>
-    <input type="text" name ="first_name" value="<%= @teacher.first_name%>">
-
-    <label for="">Middle Name</label>
-    <input type="text" name ="middle_name" value="<%= @teacher.middle_name%>">
-
-    <label for="">Last Name</label>
-    <input type="text" name ="last_name" value="<%= @teacher.last_name%>">
-
-    <label for="">Email</label>
-    <input type="text" name ="email" value="<%= @teacher.email%>">
-
-    <label for="">Password</label>
-    <input type="password" name ="password">
-    
-    <button>Update Teacher Details</button>
-</form>
-
-<form action="/teachers/<%= @teacher.id%>" method="post">
-    <input type="hidden" name="_method" value = "delete">
-    <button>Delete Teacher Record</button>
-</form>
-
+    <form class = "student-delete-form" action="/teachers/<%= @teacher.id%>" method="post">
+        <input type="hidden" name="_method" value = "delete">
+        <button>Delete Teacher Record</button>
+    </form>
+</div>
 <% end %>

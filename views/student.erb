@@ -19,7 +19,7 @@
 
 <% if current_user.class.to_s == 'Administrator'%>
 <div class="portlet">
-<br/>
+    <br/>
     <h1>Update Student Data</h1>
     <br/>
     <form class = "student-update-form" action="/students/<%= @student.id%>" method="post">

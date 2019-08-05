@@ -1,9 +1,12 @@
 # Admin: View all teachers
 get '/teachers' do
     redirect '/login' unless logged_in?
-    erb :page_not_found unless session[:user_type] == 'Administrator'
-    @teachers = Teacher.all
-    erb :teachers
+    if session[:user_type] != 'Administrator'
+        erb :page_not_found
+    else
+        @teachers = Teacher.all
+        erb :teachers
+    end
 end
 
 # Admin: View form to create new a teacher

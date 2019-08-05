@@ -1,15 +1,22 @@
 <div class="h1-portlet">
     <h1>New Class Details</h1>
 </div>
-<form action="/classes" method = "post">
-    <label for="">Class Year</label>
-    <input type="text" name ="year" placeholder="9">
-
-    <label for="">Class Letter</label>
-    <input type="text" name ="class_letter" placeholder="S">
-
-    <label for="">Teacher ID</label>
-    <input type="text" name ="teacher_id" placeholder="Latin Expert">
-
-    <button>Add New Class</button>
-</form>
+<div class="portlet-variant">
+    <form class = "student-update-form" action="/classes" method = "post">
+        <div class = "student-update-form-row">
+            <div class="label-input-pair">
+                <label for="">Class Year</label>
+                <input type="text" name ="year" placeholder="9">
+            </div>
+            <div class="label-input-pair">
+                <label for="">Class Letter</label>
+                <input type="text" name ="class_letter" placeholder="S">
+            </div>
+            <div class="label-input-pair">
+                <label for="">Teacher ID</label>
+                <input type="text" name ="teacher_id" placeholder="Latin Expert">
+            </div>
+        </div>
+        <button>Add New Class</button>
+    </form>
+</div>

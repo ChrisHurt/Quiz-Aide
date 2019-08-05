@@ -1,2 +1,6 @@
 <h1>Error 404</h1>
 <h2>Page Not Found</h2>
+<% if logged_in?%>
+<h3>User id: <%=session[:user_id]%></h3>
+<h3>User type: <%=session[:user_type]%></h3>
+<% end %>

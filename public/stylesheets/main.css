@@ -163,6 +163,11 @@ input[type='radio']:checked:after {
 .bottom-border{
     border-bottom: 1px solid black;
 }
+.teacher-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .student_answer_container{
     width: 700px;
     min-width: 40%;
@@ -251,6 +256,32 @@ button {
     width: calc(80vw + 1rem);
     margin-bottom: 1.5rem;
 }
+.portlet-variant{
+    height: 8rem;
+    box-shadow: 0rem 0rem 0.35rem #4257B2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: calc(80vw + 1rem);
+    margin-bottom: 1.5rem;
+}
+.portlet-variant > * {
+    margin-left: 1rem;
+}
+.portlet-med{
+    height: 12rem;
+    box-shadow: 0rem 0rem 0.35rem #4257B2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: calc(80vw + 1rem);
+    margin-bottom: 1.5rem;
+}
+.portlet-med > * {
+    margin: 0.5rem;
+}
 .portlet-sml{
     height: 6rem;
     box-shadow: 0rem 0rem 0.35rem #4257B2;
@@ -259,6 +290,16 @@ button {
     justify-content: center;
     align-items: center;
     margin-bottom: 1.5rem;
+}
+.portlet-tiny{
+    height: 3rem;
+    box-shadow: 0rem 0rem 0.35rem #4257B2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+    padding: 1rem;
 }
 .portlet-sml:hover{
     background-color: #4257B2;
@@ -377,4 +418,5 @@ button {
 }
 .label-input-pair{
     min-width: 30%;
+    margin-bottom: 0.5rem;
 }

@@ -1,12 +1,16 @@
-
 <div class="h1-portlet">
     <h1>List of All Teachers</h1>
 </div>
 
 
-<a href="/teachers/new"><button>Add A New Teacher</button></a>
+    <a class="new-student-btn" href="/teachers/new"><button>Add A New Teacher</button></a>
 
-<% @teachers.each do |teacher|%>
-    <h4><%=teacher.first_name%> <%= teacher.last_name%></h4>
-    <a href="/teachers/<%=teacher.id%>"><h5>Teacher Record</h5></a>
-<% end %> 
+<div class="teacher-container">
+    <% @teachers.each do |teacher|%>
+    <a href="/teachers/<%=teacher.id%>">
+        <div class="portlet-tiny">
+            <h4><%=teacher.first_name%> <%= teacher.last_name%></h4>
+        </div>
+    </a>
+    <% end %> 
+</div>

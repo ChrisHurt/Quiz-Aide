@@ -1,6 +1,8 @@
 
-<% if @students.length == 1%>
-<h1>Students of <%= @students.first.school_class.year%><%= @students.first.school_class.class_letter%></h1>
+<% if @students.length < Student.count%>
+<div class="h1-portlet">
+    <h1>Students of <%= @students.first.school_class.year%><%= @students.first.school_class.class_letter%></h1>
+</div>
 <% else %>
 <div class="h1-portlet">
     <h1>List of All Students</h1>

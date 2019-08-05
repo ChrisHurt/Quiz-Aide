@@ -1,26 +1,36 @@
 <div class="h1-portlet">
     <h1>New Student Details</h1>
 </div>
-<form action="/students" method = "post">
-
-    <label for="">First Name</label>
-    <input type="text" name ="first_name" placeholder="E.g. John">
-
-    <label for="">Middle Name</label>
-    <input type="text" name ="middle_name" placeholder="E.g. William">
-
-    <label for="">Last Name</label>
-    <input type="text" name ="last_name" placeholder="E.g. Smith">
-
-    <label for="">Class ID</label>
-    <input type="text" name ="school_class_id" placeholder="E.g. 1">
-
-    <label for="">Email</label>
-    <input type="text" name ="email" placeholder="E.g. j.smith@gmail.com">
-
-    <label for="">Password</label>
-    <input type="password" name ="password">
-
-
-    <button>Add New Student</button>
-</form>
+<div class="portlet">
+    <form class = "student-update-form" action="/students" method = "post">
+        <div class = "student-update-form-row">
+            <div class = "label-input-pair">
+                <label for="">First Name</label>
+                <input type="text" name ="first_name" placeholder="E.g. John">
+            </div>
+            <div class = "label-input-pair">
+                <label for="">Middle Name</label>
+                <input type="text" name ="middle_name" placeholder="E.g. William">
+            </div>
+            <div class = "label-input-pair">
+                <label for="">Last Name</label>
+                <input type="text" name ="last_name" placeholder="E.g. Smith">
+            </div>
+        </div>
+        <div class = "student-update-form-row">
+            <div class = "label-input-pair">
+                <label for="">Class ID&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name ="school_class_id" placeholder="E.g. 1">
+            </div>
+            <div class = "label-input-pair">
+                <label for="">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name ="email" placeholder="E.g. j.smith@gmail.com">
+            </div>
+            <div class = "label-input-pair">
+                <label for="">Password&nbsp;&nbsp;</label>
+                <input type="password" name ="password">
+            </div>
+        </div>
+        <button>Add New Student</button>
+    </form>
+</div>

@@ -1,30 +1,40 @@
 <div class="h1-portlet">
     <h1><%= @class.year%><%= @class.class_letter%>'s Record</h1>
 </div>
-<p>Class Group: <%= @class.year%><%= @class.class_letter%></p>
-<p>Class Teacher: <%= @class.teacher.first_name%></p>
-<a href="/classes/<%=@class.id%>/students">List of Students</a>
+
+<div class="portlet-med">
+    <h2>Class Group: <%= @class.year%><%= @class.class_letter%></h2>
+    <h2>Class Teacher: <%= @class.teacher.first_name%></h2><!--
+ --><a class="new-class-btn" href="/classes/<%=@class.id%>/students"><button>List of Students</button></a>
+</div>
 
 
 <% if session[:user_type] == 'Administrator'%>
+<div class="portlet">
+    <br/>
+    <h1>Update Student Data</h1>
+    <br/>
+    <form class = "student-update-form" action="/classes/<%= @class.id%>" method="post">
+        <input type="hidden" name="_method" value="put">
+        <div class = "student-update-form-row">
+            <div class = "label-input-pair">
+                <label for="">Class Year</label>
+                <input type="text" name="year" value="<%= @class.year%>">
+            </div>
+            <div class = "label-input-pair">
+                <label for="">Class Letter</label>
+                <input type="text" name="classletter" value="<%= @class.class_letter%>">
+            </div>
+            <div class = "label-input-pair">
+                <label for="">Teacher ID</label>
+                <input type="text" name="teacher_name" value="<%= @class.teacher_id%>" placeholder = "Latin Expert">
+            </div>
+        </div>
+        <button>Update Class Record</button>
+    </form>
 
-<form action="/classes/<%= @class.id%>" method="post">
-    <input type="hidden" name="_method" value="put">
-
-    <label for="">Class Year</label>
-    <input type="text" name="year" value="<%= @class.year%>">
-
-    <label for="">Class Letter</label>
-    <input type="text" name="classletter" value="<%= @class.class_letter%>">
-
-    <label for="">Teacher ID</label>
-    <input type="text" name="teacher_name" value="<%= @class.teacher_id%>" placeholder = "Latin Expert">
-
-    <button>Update Class Record</button>
-</form>
-
-<form action="/classes/<%= @class.id%>" method="post">
-    <input type="hidden" name="_method" value = "delete">
-    <button>Delete Class Record</button>
-</form>
+    <form class = "student-delete-form" action="/classes/<%= @class.id%>" method="post">
+        <input type="hidden" name="_method" value = "delete">
+        <button>Delete Class Record</button>
+    </form>
 <% end %>
