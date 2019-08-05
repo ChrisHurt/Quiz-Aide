@@ -12,17 +12,17 @@
       <% if session[:user_type] == 'Teacher'   %>
       <a href="/questions"><div>Questions</div></a>
       <a href="/classes"><div>Classes</div></a>
-      <div class="user"><%= Teacher.find(session[:user_id]).email %>
+      <div class="user"><%= Teacher.find(session[:user_id]).first_name %> <%= Teacher.find(session[:user_id]).last_name %>
       <% elsif session[:user_type] == 'Student'%>
       <a href="/questions"><div>Questions</div></a>
       <a href="/answers"><div>Answers</div></a>
       <a href="/metrics"><div>Metrics</div></a>
-      <div class="user"><%= Student.find(session[:user_id]).email %>
+      <div class="user"><%= Student.find(session[:user_id]).first_name %> <%= Student.find(session[:user_id]).last_name %>
       <% elsif session[:user_type] == 'Administrator'%>
       <a href="/teachers"><div>Teachers</div></a>
       <a href="/classes"><div>Classes</div></a>
       <a href="/students"><div>Students</div></a>
-      <div class="user"><%= Administrator.find(session[:user_id]).email %>
+      <div class="user"><%= Administrator.find(session[:user_id]).first_name %> <%= Administrator.find(session[:user_id]).last_name %>
       <% end %>
         <form action="/sessions" method="post">
           <input type="hidden" name="_method" value="delete">

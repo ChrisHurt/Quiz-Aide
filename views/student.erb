@@ -9,43 +9,54 @@
 </div>
 
 <% if @student.student_answers.where(reviewed: true).length > 0 %>
-<div class="portlet`">
+<div class="portlet">
     <h3>Overall Performace</h3>
-    <p>Questions Correct: <%= (@student.student_answers.where(reviewed: true).where(outcome: 'Correct').length.to_d / @student.student_answers.where(reviewed: true).length)*100%>% </p>
+    <p>Questions Correct: <%= '%.2f' % ((@student.student_answers.where(reviewed: true).where(outcome: 'Correct').length.to_d / @student.student_answers.where(reviewed: true).length)*100)%>% </p>
     <h3>Recent Performance: Last <%=@student.student_answers.where(reviewed: true).limit(10).length%> Questions</h3>
-    <p>Questions Correct: <%= (@student.student_answers.where(reviewed: true).limit(10).where(outcome: 'Correct').length.to_d / @student.student_answers.where(reviewed: true).limit(10).length)*100%>% </p>
+    <p>Questions Correct: <%= '%.2f' % ((@student.student_answers.where(reviewed: true).limit(10).where(outcome: 'Correct').length.to_d / @student.student_answers.where(reviewed: true).limit(10).length)*100)%>% </p>
 </div>
 <% end %>
 
 <% if current_user.class.to_s == 'Administrator'%>
 <div class="portlet">
-    <h2>If you would like to update anything, use the following form</h2>
-
-    <form action="/students/<%= @student.id%>" method="post">
+<br/>
+    <h1>Update Student Data</h1>
+    <br/>
+    <form class = "student-update-form" action="/students/<%= @student.id%>" method="post">
         <input type="hidden" name="_method" value="put">
-
-        <label for="">First Name</label>
-        <input type="text" name ="first_name" value="<%= @student.first_name%>">
-
-        <label for="">Middle Name</label>
-        <input type="text" name ="middle_name" value="<%= @student.middle_name%>">
-
-        <label for="">Last Name</label>
-        <input type="text" name ="last_name" value="<%= @student.last_name%>">
-
-        <label for="">Class ID</label>
-        <input type="text" name ="school_class_id" value="<%= @student.school_class_id%>">
-
-        <label for="">Email</label>
-        <input type="text" name ="email" value="<%= @student.email%>">
-
-        <label for="">Password</label>
-        <input type="password" name ="password">
+        <div class = "student-update-form-row">
+            <div class = "label-input-pair">
+                <label for="">First Name </label>
+                <input type="text" name ="first_name" value="<%= @student.first_name%>">
+            </div>
+            <div class = "label-input-pair">
+                <label for="">Middle Name </label>
+                <input type="text" name ="middle_name" value="<%= @student.middle_name%>">
+            </div>
+            <div class = "label-input-pair">
+                <label for="">Last Name </label>
+                <input type="text" name ="last_name" value="<%= @student.last_name%>">
+            </div>
+        </div>
+        <div class="student-update-form-row">
+            <div class="label-input-pair">
+                <label for="">Class ID&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name ="school_class_id" value="<%= @student.school_class_id%>">
+            </div>
+            <div class="label-input-pair">
+                <label for="">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name ="email" value="<%= @student.email%>">
+            </div>
+            <div class="label-input-pair">
+                <label for="">Password&nbsp;&nbsp;</label>
+                <input type="password" name ="password">
+            </div>
+        </div>
         
         <button>Update Student Details</button>
     </form>
 
-    <form action="/students/<%= @student.id%>" method="post">
+    <form class = "student-delete-form" action="/students/<%= @student.id%>" method="post">
         <input type="hidden" name="_method" value = "delete">
         <button>Delete Student Record</button>
     </form>

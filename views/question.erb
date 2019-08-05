@@ -5,10 +5,6 @@
 <p>Type: <%=@question.assessment_type%></p>
 <p>Answer: <%=@question.answer_key%></p>
 
-<h2>If you would like to change the question, use the following form</h2>
-<h3>Please bear in mind, that although the question will be updated the student outcomes will not. Be careful, this cannot be undone.</h3>
-
-
 <form action="/questions/<%= @question.id%>" method="post">
     <input type="hidden" name="_method" value="put">
 

@@ -7,17 +7,21 @@
 </div>
 <% end %>
 <% if session[:user_type] == 'Administrator'%>
-<a href="/students/new"><button>Add A New Student</button></a>
+<a class="new-student-btn" href="/students/new"><button>Add A New Student</button></a>
 <% end %>
-
-<% @students.each do |student|%>
-   <a href="/students/<%= student.id%>"><h4><%= student.school_class.year%><%= student.school_class.class_letter%>: <%= student.first_name%> <%= student.last_name%></h4></a>
-   <a href="/students/<%= student.id%>">
-   <p>Recent Performance: <!--
-    --><% if student.student_answers.where(reviewed: true).length > 0%>
-    <%= (student.student_answers.where(reviewed: true).limit(10).where(outcome: 'Correct').length.to_d / student.student_answers.where(reviewed: true).limit(10).length)*100%>%
-    <% else %>
-        Not enough data
-    <% end %>
-   </p></a>
-<% end %> 
+<div class="students-container">
+    <% @students.each do |student|%>
+    <a href="/students/<%= student.id%>">
+        <div class="portlet-sml">
+        <h4><%= student.school_class.year%><%= student.school_class.class_letter%>: <%= student.first_name%> <%= student.last_name%></h4>
+        <h3>Recent Performance: <!--
+            --><% if student.student_answers.where(reviewed: true).length > 0%>
+            <%= '%.2f' % ((student.student_answers.where(reviewed: true).limit(10).where(outcome: 'Correct').length.to_d / student.student_answers.where(reviewed: true).limit(10).length)*100)%>%
+            <% else %>
+                Not enough data
+            <% end %>
+        </h3>
+        </div>
+    </a>
+    <% end %> 
+</div>

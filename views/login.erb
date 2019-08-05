@@ -1,13 +1,16 @@
-<h1>Latin Self-Assessment</h1>
-<h2>Login Portal</h2>
+<div class="login-container portlet centered">
+    <h1>Latin Self-Assessment</h1>
+    <h2>Login Portal</h2>
 
-<form action="/sessions" method="post">
-
-    <label for="">Email</label>
-    <input type="text" name="email">
-    
-    <label for="">Password</label>
-    <input type="password" name="password">
-
-    <button>Login</button>
-</form>
+    <form class="login-form rows" action="/sessions" method="post">
+        <div class="left-aligned">
+            <label for="">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text" name="email">
+        </div>
+        <div class="left-aligned">
+            <label for="">Password&nbsp;</label>
+            <input type="password" name="password">
+            <button>Login</button>
+        </div>
+    </form>
+</div>

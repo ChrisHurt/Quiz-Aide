@@ -7,8 +7,6 @@
 
 
 <% if session[:user_type] == 'Administrator'%>
-<h2>If you would like to update anything, use the following form</h2>
-<p>Move the update forms into the administrator's control later</p>
 
 <form action="/classes/<%= @class.id%>" method="post">
     <input type="hidden" name="_method" value="put">

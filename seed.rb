@@ -24,9 +24,9 @@ a.save
 4.times do |index|
     attempts = 0
     t = Teacher.new
-    t.first_name = first_names.sample + index.to_s
-    t.middle_name = middle_names.sample + index.to_s
-    t.last_name = last_names.sample + index.to_s
+    t.first_name = first_names.sample
+    t.middle_name = middle_names.sample
+    t.last_name = last_names.sample
     t.user_name = (t.first_name[0] + t.last_name[0..2]).downcase
     while (Teacher.where(user_name: t.user_name).length > 0 || Student.where(user_name: t.user_name).length > 0 || Administrator.where(user_name: t.user_name).length > 0) && attempts < 10 
         t.user_name += rand(0..9).to_s
@@ -56,9 +56,9 @@ a.save
             15.times do |index3|
                 s = Student.new
                 s.school_class_id = sc.id
-                s.first_name = first_names.sample + index3.to_s
-                s.middle_name = middle_names.sample + index3.to_s
-                s.last_name = last_names.sample + index3.to_s
+                s.first_name = first_names.sample
+                s.middle_name = middle_names.sample
+                s.last_name = last_names.sample
                 s.user_name = (s.first_name[0] + s.last_name[0..2]).downcase
                 attempts = 0
                 while (Teacher.where(user_name: s.user_name).length > 0 || Student.where(user_name: s.user_name).length > 0 || Administrator.where(user_name: s.user_name).length > 0) && attempts < 10 
@@ -66,17 +66,33 @@ a.save
                     attempts += 1
                 end
                 if attempts < 10
-                    s.email = 's' + index3.to_s
-                    s.password  = 's' + index3.to_s
+                    s.email = 's' + index3
+                    s.password  = 's'
                     s.save
                     puts "    Student Added: " + s.first_name
-                    2.times do |index5|
+                    20.times do |index5|
                         a = StudentAnswer.new
                         a.student_id = s.id
                         a.latin_question_id = q.id
                         a.answer = ((index5+1) * (index+1)).to_s
-                        a.reviewed = false
-                        a.outcome = 'Unsure'
+                        case rand(1..2)
+                        when 1
+                            a.reviewed = true
+                        when 2
+                            a.reviewed = false
+                        else 
+                            a.reviewed = true
+                        end
+                        case rand(1..3)
+                        when 1
+                            a.outcome = 'Unsure'
+                        when 2
+                            a.outcome = 'Correct'
+                        when 3
+                            a.outcome = 'Incorrect'
+                        else 
+                            a.outcome = 'Unsure'
+                        end
                         a.save
                         puts "       Question Answered: " + a.answer
                     end

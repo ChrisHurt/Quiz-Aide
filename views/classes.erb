@@ -3,14 +3,19 @@
 </div>
 
 <% if session[:user_type] == 'Administrator'%>
-<a href="/classes/new"><button>Add A New Class</button></a>
+<a class="new-class-btn" href="/classes/new"><button>Add A New Class</button></a>
 <% end %>
 
+<div class="classes-container">
 <% @classes.each do |school_class|%>
-    <% if school_class.teacher %>
-    <a href="/classes/<%= school_class.id%>"><p><%= school_class.year%><%= school_class.class_letter%> is led by <%= school_class.teacher.first_name%></p></a>
-    <% else %>
-    <a href="/classes/<%= school_class.id%>"><p><%= school_class.year%><%= school_class.class_letter%> is awaiting a new teacher</p></a>
-    <% end %>
-
+    <a href="/classes/<%= school_class.id%>">
+        <div class="portlet-sml">
+            <% if school_class.teacher %>
+            <p><%= school_class.year%><%= school_class.class_letter%> is led by <%= school_class.teacher.first_name%></p>
+            <% else %>
+            <p><%= school_class.year%><%= school_class.class_letter%> is awaiting a new teacher</p>
+            <% end %>
+        </div>
+    </a>
 <% end %>
+</div>
