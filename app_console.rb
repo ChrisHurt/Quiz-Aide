@@ -8,4 +8,4 @@ require_relative 'models/student_answer'
 require_relative 'models/teacher'
 require_relative 'models/administrator'
 
-binding.pry
+# binding.pry

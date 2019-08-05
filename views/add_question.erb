@@ -1,16 +1,22 @@
-<h1>Hello Latin Teacher!</h1>
-
-<h2>New question form</h2>
-
-<form action="/questions" method = "post">
-    <label for="">Question</label>
-    <input type="text" name ="question" placeholder="1+1">
-
-    <label for="">Question Type</label>
-    <input type="text" name ="assessment_type" placeholder="Grammar">
-
-    <label for="">Answer Key</label>
-    <input type="text" name ="answer_key" placeholder="2">
-
-    <button>Add New Question</button>
-</form>
+<div class="h1-portlet">
+    <h1>New Question</h1>
+</div>
+<div class="portlet-variant">
+    <form class = "student-update-form" action="/questions" method = "post">
+        <div class = "student-update-form-row">
+            <div class="label-input-pair">
+                <label for="">Question&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name ="question" placeholder="1+1">
+            </div>
+            <div class="label-input-pair">
+                <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Question Type</label>
+                <input type="text" name ="assessment_type" placeholder="Grammar">
+            </div>
+        </div>
+        <div class = "student-update-form-row">
+            <label for="">Answer Key&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text" name ="answer_key" placeholder="2">
+        </div>
+        <button>Add New Question</button>
+    </form>
+</div>

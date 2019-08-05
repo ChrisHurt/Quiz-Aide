@@ -66,8 +66,8 @@ a.save
                     attempts += 1
                 end
                 if attempts < 10
-                    s.email = 's' + index3
-                    s.password  = 's'
+                    s.email = 's' + index3.to_s
+                    s.password  = 's'  + index3.to_s
                     s.save
                     puts "    Student Added: " + s.first_name
                     20.times do |index5|

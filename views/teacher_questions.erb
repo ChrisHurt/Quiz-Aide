@@ -1,6 +1,6 @@
-<div class="flex-row">
-    <a class="flex-item" href="/questions/new" ><div>New Question</div></a>
-    <a class="flex-item" href="/teachers/<%= current_user.id%>/questions"><div>My Questions</div></a>
-    <a class="flex-item" href="/teachers/questions"><div>All Questions</div></a>
-    <a class="flex-item" href="/answers/review"><div>Review Answers</div></a>
+<div class="flex-row flex-wrap">
+    <div class="choice"><a href="/questions/new" ><div>New Question</div></a></div>
+    <div class="choice"><a href="/teachers/<%= current_user.id%>/questions"><div>My Questions</div></a></div>
+    <div class="choice"><a href="/teachers/questions"><div>All Questions</div></a></div>
+    <div class="choice"><a href="/answers/review"><div>Review Answers</div></a></div>
 </div>

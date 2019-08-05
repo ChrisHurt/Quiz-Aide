@@ -1,14 +1,32 @@
-<h1>Questions</h1>
+<div class="h1-portlet">
+    <h1>Questions</h1>
+</div>
+<a class="new-class-btn" href="/questions/new"><button>Add A New Question</button></a>
 
-<a href="/questions/new"><button>Add A New Question</button></a>
-
-<% @questions.each do |question|%>
-    <% if @questions.distinct.pluck(:teacher_id).length > 1 && question.teacher%>
-    <p>Teacher: <%= question.teacher.first_name%></p>
+<div class="classes-container">
+    <% @questions.each do |question|%>
+        <div class="portlet-variant2">
+            <div class = "student-update-form-row">
+                <div class="label-input-pair">
+                    <% if @questions.distinct.pluck(:teacher_id).length > 1 && question.teacher%>
+                    <h2>Teacher: <%= question.teacher.first_name%></h2>
+                    <% end %>
+                </div>
+            </div>
+            <div class = "student-update-form-row">
+                <div class="label-input-pair">
+                    <p>Question: "<%= question.body%>"&nbsp;&nbsp;&nbsp;</p>
+                </div>
+                <div class="label-input-pair">
+                    <p>Type: <%= question.assessment_type%></p>
+                </div>
+            </div>
+            <div class = "student-update-form-row">
+                <div class="label-input-pair">
+                    <p>Answer: <%= question.answer_key%></p>
+                </div>
+            </div>
+            <button><a href="/questions/<%= question.id%>"><p>Edit Question</p></a></button>
+        </div>
     <% end %>
-    <p>Question: <%= question.body%></p>
-    <p>Type: <%= question.assessment_type%></p>
-    <p>Answer: <%= question.answer_key%></p>
-    <a href="/questions/<%= question.id%>"><p>Edit Question</p></a>
-    <br>
-<% end %>
+</div>

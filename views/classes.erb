@@ -7,15 +7,15 @@
 <% end %>
 
 <div class="classes-container">
-<% @classes.each do |school_class|%>
-    <a href="/classes/<%= school_class.id%>">
-        <div class="portlet-sml">
-            <% if school_class.teacher %>
-            <p><%= school_class.year%><%= school_class.class_letter%> is led by <%= school_class.teacher.first_name%></p>
-            <% else %>
-            <p><%= school_class.year%><%= school_class.class_letter%> is awaiting a new teacher</p>
-            <% end %>
-        </div>
-    </a>
-<% end %>
+    <% @classes.each do |school_class|%>
+        <a href="/classes/<%= school_class.id%>">
+            <div class="portlet-sml">
+                <% if school_class.teacher %>
+                <p><%= school_class.year%><%= school_class.class_letter%> is led by <%= school_class.teacher.first_name%></p>
+                <% else %>
+                <p><%= school_class.year%><%= school_class.class_letter%> is awaiting a new teacher</p>
+                <% end %>
+            </div>
+        </a>
+    <% end %>
 </div>

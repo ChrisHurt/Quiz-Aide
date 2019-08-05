@@ -3,7 +3,6 @@
 </div>
 <div class="questions-container">
 <% @student_answers.each do |answer|%>
-<%# <div class="col"> %>
     <div class="student_answer_container">
         <h2 class = "sa-question">Question: <%=answer.latin_question.body%></h2>
         <div class="student_answer_flex">
@@ -23,6 +22,5 @@
             <% end %>
         </div>
     </div>
-<%# </div> %>
 <% end %>
 </div>

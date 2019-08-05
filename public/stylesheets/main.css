@@ -269,6 +269,19 @@ button {
 .portlet-variant > * {
     margin-left: 1rem;
 }
+.portlet-variant2{
+    height: 8rem;
+    box-shadow: 0rem 0rem 0.35rem #4257B2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 30%;
+    margin-bottom: 1.5rem;
+}
+.portlet-variant2 > * {
+    margin-left: 1rem;
+}
 .portlet-med{
     height: 12rem;
     box-shadow: 0rem 0rem 0.35rem #4257B2;
@@ -300,6 +313,23 @@ button {
     align-items: center;
     margin: 0.5rem;
     padding: 1rem;
+}
+.choice{
+    min-height: 6rem;
+    font-size: 3rem;
+    line-height: 6rem;
+    box-shadow: 0rem 0rem 0.35rem #4257B2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+    padding: 1rem;
+}
+.choice:hover {
+    background-color: #4257B2;
+    color:white;
+    transition: all 0.4 linear;
 }
 .portlet-sml:hover{
     background-color: #4257B2;
@@ -378,11 +408,7 @@ button {
     flex-direction: column;
     
 }
-/* .student-delete-form{
-    position: relative;
-    top: -10px;
-} */
-.student-update-form button, .student-delete-form button  {
+.student-update-form button, .student-delete-form button, .portlet-variant2 button  {
     width: 10rem;
     margin-top: 0.5rem;
     border-radius: 0.35rem;
@@ -401,7 +427,7 @@ button {
     color: white;
     background-color: rgb(255, 111, 0);
 }
-.student-update-form button:hover{
+.student-update-form button:hover, .portlet-variant2 button:hover{
     background-color: #4257B2;
     color:white;
     transition: all 0.4 linear;
@@ -419,4 +445,14 @@ button {
 .label-input-pair{
     min-width: 30%;
     margin-bottom: 0.5rem;
+}
+.flex-wrap{
+    width: 100%;
+    flex-wrap: wrap;
+}
+.margin-top{
+    margin-top: 0.5rem;
+}
+.leftadjust{
+    margin-left: 5rem;
 }

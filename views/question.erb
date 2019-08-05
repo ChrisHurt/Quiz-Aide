@@ -1,26 +1,47 @@
 <div class="h1-portlet">
     <h1>Question <%=@question.id%>'s Record</h1>
 </div>
-<p>Question: <%=@question.body%></p>
-<p>Type: <%=@question.assessment_type%></p>
-<p>Answer: <%=@question.answer_key%></p>
+<div class="portlet-med">
+    <div class = "leftadjust student-update-form-row">
+        <div class = "label-input-pair">
+            <h2>Question: <%=@question.body%></h2>
+        </div>
+        <div class = "label-input-pair">
+            <h2>Type: <%=@question.assessment_type%></h2>
+        </div>
+    </div>
+    <div class = "leftadjust student-update-form-row">
+        <div class = "label-input-pair">
+            <h2>Answer: <%=@question.answer_key%></h2>
+        </div>
+    </div>
+</div>
+<div class="portlet">
+    <br>
+    <h1>Update Question</h1>
+    <br>
+    <form class="student-update-form"  action="/questions/<%= @question.id%>" method="post">
+        <input type="hidden" name="_method" value="put">
+        <div class = "student-update-form-row">
+            <div class = "label-input-pair">
+                <label for="">Question&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name="body" value="<%= @question.body%>">
+            </div>
+            <div class = "label-input-pair">
+                <label for="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type</label>
+                <input type="text" name="assessment_type" value="<%= @question.assessment_type%>">
+            </div>
+        </div>
+        <div class = "student-update-form-row">
+            <label for="">Answer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text" name="answer_key" value="<%= @question.answer_key%>">
+        </div>
 
-<form action="/questions/<%= @question.id%>" method="post">
-    <input type="hidden" name="_method" value="put">
+        <button>Update Question</button>
+    </form>
 
-    <label for="">Question</label>
-    <input type="text" name="body" value="<%= @question.body%>">
-
-    <label for="">Type</label>
-    <input type="text" name="assessment_type" value="<%= @question.assessment_type%>">
-
-    <label for="">Answer</label>
-    <input type="text" name="answer_key" value="<%= @question.answer_key%>">
-
-    <button>Update Question</button>
-</form>
-
-<form action="/questions/<%= @question.id%>" method="post">
-    <input type="hidden" name="_method" value = "delete">
-    <button>Delete Question</button>
-</form>
+    <form class = "student-delete-form" action="/questions/<%= @question.id%>" method="post">
+        <input type="hidden" name="_method" value = "delete">
+        <button>Delete Question</button>
+    </form>
+</div>
