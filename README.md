@@ -26,6 +26,11 @@ This web app is a CRUD app built for managing classes, teachers, assessment ques
 * [PostgreSQL](https://www.postgresql.org/)
 * [ActiveRecord](https://guides.rubyonrails.org/active_record_basics.html)
 * [JavaScript](https://www.javascript.com/)
+* [Bcrypt](https://rubygems.org/gems/bcrypt/)
+
+## Deployed With
+
+* [Heroku](https://www.heroku.com/about)
 
 ## Application Demo
 
