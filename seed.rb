@@ -8,9 +8,9 @@ require_relative 'models/student_answer'
 require_relative 'models/teacher'
 require_relative 'models/administrator'
 
-first_names = ['Carla','Chris','John', "Sally", 'Sven', 'Georgia']
-middle_names = ['William', "Sally", 'Sven', 'Elizabeth']
-last_names = ['Hurt','Schodde','Herald', "Simmons", 'James', 'Smith']
+first_names = ['Carla','Chris','John', "Sally", 'Sven', 'Georgia','Clifton','Nerko','Pamela','Stephanie','Denise','Sam','Priyanka','Kai','Fred','Ben','Andrew']
+middle_names = ['William', "Sally", 'Sven', 'Elizabeth','Lilian']
+last_names = ['Hurt','Schodde','Herald', "Simmons", 'James', 'Smith','Mohammed','La Morte','Cadigan','Cage','MacDougal','Macera','Macaluso','Hable']
 
 a = Administrator.new
 a.first_name = first_names.sample
