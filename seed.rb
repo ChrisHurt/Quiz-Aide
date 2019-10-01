@@ -70,7 +70,7 @@ a.save
                     s.password  = 's'  + index3.to_s
                     s.save
                     puts "    Student Added: " + s.first_name
-                    20.times do |index5|
+                    25.times do |index5|
                         a = StudentAnswer.new
                         a.student_id = s.id
                         a.latin_question_id = q.id
