@@ -1,8 +1,8 @@
-<div class="h1-portlet">
+<div class="h1-portlet z-index-5">
     <h1><%= @class.year%><%= @class.class_letter%>'s Record</h1>
 </div>
 
-<div class="portlet-med">
+<div class="portlet-med z-index-5">
     <h2>Class Group: <%= @class.year%><%= @class.class_letter%></h2>
     <h2>Class Teacher: <%= @class.teacher.first_name%></h2><!--
  --><a class="new-class-btn" href="/classes/<%=@class.id%>/students"><button>List of Students</button></a>
@@ -10,7 +10,7 @@
 
 
 <% if session[:user_type] == 'Administrator'%>
-<div class="portlet">
+<div class="portlet z-index-5">
     <br/>
     <h1>Update Student Data</h1>
     <br/>

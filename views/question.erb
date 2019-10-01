@@ -1,7 +1,7 @@
-<div class="h1-portlet">
+<div class="h1-portlet z-index-5">
     <h1>Question <%=@question.id%>'s Record</h1>
 </div>
-<div class="portlet-med">
+<div class="portlet-med z-index-5">
     <div class = "leftadjust student-update-form-row">
         <div class = "label-input-pair">
             <h2>Question: <%=@question.body%></h2>
@@ -16,10 +16,7 @@
         </div>
     </div>
 </div>
-<div class="portlet">
-    <br>
-    <h1>Update Question</h1>
-    <br>
+<div class="question-div title-width-matching z-index-5">
     <form class="student-update-form"  action="/questions/<%= @question.id%>" method="post">
         <input type="hidden" name="_method" value="put">
         <div class = "student-update-form-row">
@@ -36,12 +33,12 @@
             <label for="">Answer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input type="text" name="answer_key" value="<%= @question.answer_key%>">
         </div>
+        <button class="add-new-question">Update Question</button>
 
-        <button>Update Question</button>
     </form>
 
     <form class = "student-delete-form" action="/questions/<%= @question.id%>" method="post">
         <input type="hidden" name="_method" value = "delete">
-        <button>Delete Question</button>
+        <button class="add-new-question delete-question-button">Delete Question</button>
     </form>
 </div>

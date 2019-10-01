@@ -1,36 +1,40 @@
-<div class="h1-portlet">
+
+<div class="zero-dimensions z-index-5">
+    <div class="full-dimensions">
+        <div class="blocker"></div>
+    </div>
+</div>
+<div class="h1-portlet z-index-5">
     <h1>Answers to Review</h1>
 </div>
-
 <% num_records = 0%>
-<div class="classes-container">
+<div class="questions-container z-index-5">
     <% @review_questions.length.times do |index|%>
         <% if @review_questions[index].reviewed == false%>
             <div class="student_answer_container">
                 <h2 class = "sa-question">Question: <%=@review_questions[index].latin_question.body%></h2>
-                <%# <div class="student_answer_flex"> %>
-                <div class = "student-update-form-row">
+                <div class = "padding-8px-sides student-update-form-row">
                     <div class="label-input-pair">
                         <span>Student: <%= @review_questions[index].student.first_name%></span>
                     </div>
                 </div>
-                <div class = "student-update-form-row">
+                <div class = "padding-8px-sides student-update-form-row">
                     <div class="label-input-pair">
                         <span>Given Answer: <%=@review_questions[index].answer%></span>
                     </div>
                 </div>
-                <div class = "student-update-form-row">
+                <div class = "padding-8px-sides student-update-form-row">
                     <div class="label-input-pair">
                         <span>Answer Key: <%=@review_questions[index].latin_question.answer_key%></span>
                     </div>
                 </div>
-                <div class = "student-update-form-row">
+                <div class = "padding-8px-sides student-update-form-row">
                     <span>Outcome: <%=@review_questions[index].outcome%></span>
                 </div>
                 <form class="margin-top" action="/answers<%=@review_questions[index].id%>" method="post">
                     <input type="hidden" name="_method" value ="put">
-                    <div class="outcomes">
-                        <span>✓:<input type="radio" name="outcome" value="Correct"  <%= (@review_questions[index].outcome=="Correct") ? "checked" : " "%> ></span><!--
+                    <div class="outcomes force-justify-content-flex-end padding-8px">
+                        <span class="left-rounding">✓:<input type="radio" name="outcome" value="Correct"  <%= (@review_questions[index].outcome=="Correct") ? "checked" : " "%> ></span><!--
                     --><span>✗:<input type="radio" name="outcome" value="Incorrect" <%= (@review_questions[index].outcome=="Incorrect") ? "checked" : " "%>></span><!--
                     --><button type="submit">Confirm Outcome</button>
                     </div>

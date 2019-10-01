@@ -1,21 +1,22 @@
-<div class="h1-portlet">
+<div class="h1-portlet z-index-5">
     <h1>Classes</h1>
 </div>
 
 <% if session[:user_type] == 'Administrator'%>
-<a class="new-class-btn" href="/classes/new"><button>Add A New Class</button></a>
+<a class="new-class-btn z-index-5" href="/classes/new"><button>Add A New Class</button></a>
 <% end %>
-
-<div class="classes-container">
+<div class="title-width-matching horizontal-flex-container z-index-5">
+    <div class="quartered-flex-element2">Class</div>
+    <div class="quartered-flex-element2">Teacher</div>
+</div>
+<div class="classes-container title-width-matching z-index-5">
     <% @classes.each do |school_class|%>
         <a href="/classes/<%= school_class.id%>">
-            <div class="portlet-sml">
-                <% if school_class.teacher %>
-                <p><%= school_class.year%><%= school_class.class_letter%> is led by <%= school_class.teacher.first_name%></p>
-                <% else %>
-                <p><%= school_class.year%><%= school_class.class_letter%> is awaiting a new teacher</p>
-                <% end %>
-            </div>
+            <% if school_class.teacher %>
+            <p><%= school_class.year%><%= school_class.class_letter%></p><p><%= school_class.teacher.first_name + ' ' + school_class.teacher.last_name%></p>
+            <% else %>
+            <p><%= school_class.year%><%= school_class.class_letter%></p><p>None.</p>
+            <% end %>
         </a>
     <% end %>
 </div>

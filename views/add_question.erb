@@ -1,22 +1,22 @@
-<div class="h1-portlet">
+<div class="h1-portlet z-index-5">
     <h1>New Question</h1>
 </div>
-<div class="portlet-variant">
+<div class="question-div title-width-matching z-index-5 opaque-petal">
     <form class = "student-update-form" action="/questions" method = "post">
         <div class = "student-update-form-row">
-            <div class="label-input-pair">
-                <label for="">Question&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="text" name ="question" placeholder="1+1">
+            <div class="label-input-pair half-width-separated">
+                <label class="min-width-80 margin-right-1em" for="">Question</label>
+                <input class="flex-grow-1 max-width-75" type="text" name ="question" placeholder="1+1">
             </div>
-            <div class="label-input-pair">
-                <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Question Type</label>
-                <input type="text" name ="assessment_type" placeholder="Grammar">
+            <div class="label-input-pair half-width-separated">
+                <label class="min-width-80 margin-right-1em" for="">Question Type</label>
+                <input class="flex-grow-1 max-width-75" type="text" name ="assessment_type" placeholder="Grammar">
             </div>
         </div>
-        <div class = "student-update-form-row">
-            <label for="">Answer Key&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="text" name ="answer_key" placeholder="2">
+        <div class = "margin-left-8px half-width-separated">
+            <label class="min-width-80 margin-right-1em" for="">Answer Key</label>
+            <input class="flex-grow-1 max-width-75" type="text" name ="answer_key" placeholder="2">
         </div>
-        <button>Add New Question</button>
+        <button class="add-new-question">Add New Question</button>
     </form>
 </div>

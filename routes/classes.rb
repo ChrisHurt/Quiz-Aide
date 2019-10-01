@@ -1,3 +1,4 @@
+require_relative 'students'
 # Admin|Teacher:  View Teacher Class Options
 get '/classes' do 
   redirect '/login' unless logged_in?
@@ -41,6 +42,8 @@ end
 get '/classes/:id' do
   redirect '/login' unless logged_in?
   erb :page_not_found unless session[:user_type] == 'Teacher' || session[:user_type] == 'Administrator'
+  class_id = params[:id]
+  redirect "/classes/#{class_id}/students"
   @class = SchoolClass.find(params[:id])
   erb :class
 end

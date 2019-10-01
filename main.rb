@@ -42,11 +42,6 @@ end
 
 # Home Page
 get '/' do
-  redirect '/home' unless logged_in?
-  redirect '/login'
-end
-
-get '/home' do 
   if logged_in? && session[:user_type] == 'Teacher'
     @teacher = current_user
     erb :teacher_home
@@ -56,6 +51,24 @@ get '/home' do
   elsif  session[:user_type] == 'Administrator'
     @admin = current_user
     erb :admin_home
+  else
+    redirect '/login'
+  end
+  
+  redirect '/home' unless logged_in?
+  redirect '/login'
+end
+
+get '/home' do 
+  if logged_in? && session[:user_type] == 'Teacher'
+    @teacher = current_user
+    redirect '/questions'
+  elsif session[:user_type] == 'Student'
+    @student = current_user
+    redirect '/questions'
+  elsif  session[:user_type] == 'Administrator'
+    @admin = current_user
+    redirect '/classes'
   else
     redirect '/login'
   end

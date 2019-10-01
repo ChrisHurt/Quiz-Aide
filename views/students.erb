@@ -1,29 +1,36 @@
-
+<div class="zero-dimensions z-index-5">
+    <div class="full-dimensions">
+        <div class="blocker"></div>
+    </div>
+</div>
 <% if @students.length < Student.count%>
-<div class="h1-portlet">
+<div class="h1-portlet z-index-5">
     <h1>Students of <%= @students.first.school_class.year%><%= @students.first.school_class.class_letter%></h1>
 </div>
 <% else %>
-<div class="h1-portlet">
+<div class="h1-portlet z-index-5">
     <h1>List of All Students</h1>
 </div>
 <% end %>
 <% if session[:user_type] == 'Administrator'%>
-<a class="new-student-btn" href="/students/new"><button>Add A New Student</button></a>
+<a class="new-student-btn z-index-5" href="/students/new"><button>Add A New Student</button></a>
 <% end %>
-<div class="students-container">
+<div class="title-width-matching horizontal-flex-container z-index-5">
+    <div class="triune-flex-element">Class</div>
+    <div class="triune-flex-element">Student</div>
+    <div class="triune-flex-element">Recent Performance</div>
+</div>
+<div class="students-container title-width-matching z-index-5 margin-bottom-2em">
     <% @students.each do |student|%>
     <a href="/students/<%= student.id%>">
-        <div class="portlet-sml">
-        <h4><%= student.school_class.year%><%= student.school_class.class_letter%>: <%= student.first_name%> <%= student.last_name%></h4>
-        <h3>Recent Performance: <!--
-            --><% if student.student_answers.where(reviewed: true).length > 0%>
+        <p><%= student.school_class.year%><%= student.school_class.class_letter%></p>
+        <p><%= student.first_name%> <%= student.last_name%></p>
+        <p><% if student.student_answers.where(reviewed: true).length > 0%>
             <%= '%.2f' % ((student.student_answers.where(reviewed: true).limit(10).where(outcome: 'Correct').length.to_d / student.student_answers.where(reviewed: true).limit(10).length)*100)%>%
             <% else %>
                 Not enough data
             <% end %>
-        </h3>
-        </div>
+        </p>
     </a>
     <% end %> 
 </div>

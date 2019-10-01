@@ -1,7 +1,12 @@
-<div class="h1-portlet">
+<div class="zero-dimensions z-index-5">
+    <div class="full-dimensions">
+        <div class="blocker"></div>
+    </div>
+</div>
+<div class="h1-portlet z-index-5">
     <h1>Questions for self-assessment</h1>
 </div>
-<div class="questions-container">
+<div class="questions-container z-index-5">
 <% @questions.each_with_index do |question,index|%>
     <div class="question-div">
         <h2 class="question">Question: <%=  question.body%></h2>
@@ -12,7 +17,7 @@
             <%# Answer Input %>
             <div class="first-row">
                 <label for="">Answer: </label>
-                <input class="answer<%=index%>" type="text" name="answer">
+                <input class="answer<%=index%>" type="text" name="answer" placeholder="answer before checking">
                 <button type="button" class="check_answer check_answer<%= index%>">Check Answer</button>
                 <%# Question ID %>
                 <input type="hidden" name="latin_question_id" value="<%=question.id%>">
