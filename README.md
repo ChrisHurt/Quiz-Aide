@@ -1,6 +1,6 @@
 Demo: 
 
-# Self Assessment System
+# Quiz Aide
 > A Flexible Web Application for skill assessment
 
 <!-- TABLE OF CONTENTS -->
@@ -35,11 +35,19 @@ This web app is a CRUD app built for managing classes, teachers, assessment ques
 
 ## Application Demo
 
-[Link here](https://quiet-mesa-89082.herokuapp.com/login)
+[Link here](https://quiz-aide.herokuapp.com/login)
+
+### Demo Student User
+ - username: s7
+ - password: s7
+
+### Demo Student User
+- username: t1
+- password: t1
 
 ## Roadmap
 
-### Initial Project Scope -- 31/07/19
+### Sprint 1 -- Completed 31/07/19
 * Build a login portal that differentiates between students, teachers and administrators
 * Give teachers authorisation to:
   * CRUD Questions
@@ -52,10 +60,10 @@ This web app is a CRUD app built for managing classes, teachers, assessment ques
 * Give administrators authorisation to:
   * CRUD all resources
 
-### Future Work
-* Select a more semantic Heroku URL
-* Update styling and add more variety
-* Provide student & teacher demonstration accounts for users to test the application with
+### Sprint 2 -- Completed 01/10/19
+* Selected a more semantic Heroku URL
+* Completed a styling overhaul
+* Added demo user accounts
 
 <!-- LICENSE -->
 ## License
@@ -68,7 +76,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Chris Hurt - chrishcoding@gmail.com
 
-Project Link: [https://github.com/ChrisHurt/Self_Assessment_System](https://github.com/ChrisHurt/Self_Assessment_System)
+Project Link: [https://github.com/ChrisHurt/Quiz-Aide](https://github.com/ChrisHurt/Quiz-Aide)
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
